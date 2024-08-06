@@ -1,0 +1,1 @@
+Program wykorzystuje wieloprocesowość. Przed uruchomieniem programu upewnij się że Twoja maszyna spełnia wymagania techniczne.
