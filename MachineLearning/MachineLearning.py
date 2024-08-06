@@ -204,6 +204,10 @@ def preprocess_videos_with_progress(data_path):
                                                                                                        "Autor: Damian Jamroży",
                                                                                                        display_visualization)
 
+    # Add the finish label at the appropriate place
+    finish_label = tk.Label(root, text="", fg="green")
+    finish_label.pack(pady=10)
+
     def update_progress():
         while True:
             result = queue.get()
@@ -233,13 +237,29 @@ def preprocess_videos_with_progress(data_path):
         if len(data) > 0:
             num_features = max(len(frame) for seq in data for frame in seq)
             data_array = pad_sequences(list(data), maxlen=240, num_features=num_features)
+
+            # Insert message before saving file
+            details_text.config(state='normal')
+            details_text.insert('end', "Trwa zapisywanie pliku pomocniczego preprocessed_data.npz...\n")
+            details_text.yview('end')
+            details_text.config(state='disabled')
+
             save_preprocessed_data(data_array, np.array(labels))
             print(f"Przetworzono {len(data)} nagrań.")
+
+            # Insert final message after saving file
+            location = os.path.abspath('preprocessed_data.npz')
+            final_message = f"Program zakończył swoje działanie pomyślnie. Przetworzono {len(data)} nagrań, a plik pomocniczy został zapisany w lokalizacji {location}"
+            details_text.config(state='normal')
+            details_text.insert('end', final_message + '\n', ('green_bold',))
+            details_text.tag_configure('green_bold', foreground='green', font=('TkDefaultFont', 10, 'bold'))
+            details_text.yview('end')
+            details_text.config(state='disabled')
         else:
             print("Brak przetworzonych nagrań.")
 
-        finish_label = tk.Label(root, text="Zakończono przetwarzanie danych")
-        finish_label.pack(pady=10)
+        # Update the finish label text here
+        finish_label.config(text="Zakończono przetwarzanie danych")
 
         start_training_button = tk.Button(button_frame, text="Rozpocznij uczenie maszynowe",
                                           command=lambda: start_training(data_array, np.array(labels), root))
