@@ -4,6 +4,7 @@ import numpy as np
 import mediapipe as mp
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog, messagebox
 import threading
 import tensorflow as tf
 from keras.models import Sequential
@@ -17,6 +18,7 @@ from PIL import Image, ImageTk
 import warnings
 import random
 import time
+import webbrowser
 
 # Inicjalizacja MediaPipe
 mp_drawing = mp.solutions.drawing_utils
@@ -25,7 +27,9 @@ mp_hands = mp.solutions.hands
 mp_face_mesh = mp.solutions.face_mesh
 
 # Ignorowanie ostrzeżeń dotyczących SymbolDatabase.GetPrototype()
-warnings.filterwarnings("ignore", category=UserWarning, message="SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead.")
+warnings.filterwarnings("ignore", category=UserWarning,
+                        message="SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead.")
+
 
 def extract_keypoints(pose_results, hands_results, face_results):
     keypoints = []
@@ -46,6 +50,7 @@ def extract_keypoints(pose_results, hands_results, face_results):
 
     return keypoints
 
+
 def pad_sequences(sequences, maxlen, num_features):
     padded_sequences = np.zeros((len(sequences), maxlen, num_features))
     for i, seq in enumerate(sequences):
@@ -56,6 +61,7 @@ def pad_sequences(sequences, maxlen, num_features):
                 padded_sequences[i, j, :] = frame
     return padded_sequences
 
+
 def process_video(args):
     video_path, gesture, data, labels, current_progress, total_videos, lock, queue = args
     cap = cv2.VideoCapture(video_path)
@@ -65,8 +71,8 @@ def process_video(args):
 
     frames = []
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose, \
-         mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
-         mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
+            mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
+            mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
 
         while cap.isOpened():
             ret, frame = cap.read()
@@ -90,7 +96,8 @@ def process_video(args):
     else:
         queue.put(f"{video_path} - Niepełne nagranie, pominięto")
 
-def preprocess_videos_with_progress(data_path='MP_Data'):
+
+def preprocess_videos_with_progress(data_path):
     manager = Manager()
     data = manager.list()
     labels = manager.list()
@@ -115,8 +122,9 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
     def display_visualization():
         vis_root = tk.Toplevel()
         vis_root.title("Wizualizacja przetwarzania")
-        vis_root.geometry("800x400")  # Zwiększono wysokość okna
+        vis_root.geometry("800x400")
         vis_root.attributes('-topmost', True)
+        vis_root.resizable(False, False)
 
         header_text = tk.Label(vis_root, text="", anchor="n")
         header_text.pack(side=tk.TOP, pady=5)
@@ -140,8 +148,8 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
 
         def update_visualization():
             with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose, \
-                 mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
-                 mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
+                    mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
+                    mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
 
                 while cap.isOpened():
                     ret, frame = cap.read()
@@ -175,24 +183,26 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
                             mp_drawing.draw_landmarks(frame_right, face_landmarks, mp_face_mesh.FACEMESH_TESSELATION)
 
                     img_left = cv2.cvtColor(frame_left, cv2.COLOR_BGR2RGB)
-                    img_left = cv2.resize(img_left, (400, 300))  # Zmniejszenie podglądu 2x
+                    img_left = cv2.resize(img_left, (400, 300))
                     img_left = ImageTk.PhotoImage(image=Image.fromarray(img_left))
                     vis_label_left.config(image=img_left)
                     vis_label_left.image = img_left
 
                     img_right = cv2.cvtColor(frame_right, cv2.COLOR_BGR2RGB)
-                    img_right = cv2.resize(img_right, (400, 300))  # Zmniejszenie podglądu 2x
+                    img_right = cv2.resize(img_right, (400, 300))
                     img_right = ImageTk.PhotoImage(image=Image.fromarray(img_right))
                     vis_label_right.config(image=img_right)
                     vis_label_right.image = img_right
 
                     vis_root.update_idletasks()
-                    time.sleep(1/30)  # Odtwarzanie wideo w 30 FPS
+                    time.sleep(1 / 30)
                 cap.release()
 
         threading.Thread(target=update_visualization).start()
 
-    root, main_progress, progress_text, details_text, button_frame, footer_label = create_progress_bar(total_videos, "Autor: Damian Jamroży", display_visualization)
+    root, main_progress, progress_text, details_text, button_frame, footer_label = create_progress_bar(total_videos,
+                                                                                                       "Autor: Damian Jamroży",
+                                                                                                       display_visualization)
 
     def update_progress():
         while True:
@@ -204,7 +214,8 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
                 details_text.insert('end', f"{result}\n")
                 details_text.yview('end')
                 details_text.config(state='disabled')
-                progress_text.set(f"Przetworzono {current_progress.value}/{total_videos} nagrań ({(current_progress.value / total_videos) * 100:.2f}%)")
+                progress_text.set(
+                    f"Przetworzono {current_progress.value}/{total_videos} nagrań ({(current_progress.value / total_videos) * 100:.2f}%)")
                 root.update_idletasks()
             progress = (current_progress.value / total_videos) * 100
             main_progress['value'] = current_progress.value
@@ -212,8 +223,9 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
             root.update_idletasks()
 
     def process_videos():
-        pool_args = [(video_path, gesture, data, labels, current_progress, total_videos, lock, queue) for video_path, gesture in video_files]
-        with Pool(min(cpu_count(), 25)) as pool:  # Użyj maksymalnie 25 procesów
+        pool_args = [(video_path, gesture, data, labels, current_progress, total_videos, lock, queue) for
+                     video_path, gesture in video_files]
+        with Pool(min(cpu_count(), 25)) as pool:
             pool.map(process_video, pool_args)
 
         queue.put("DONE")
@@ -229,7 +241,8 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
         finish_label = tk.Label(root, text="Zakończono przetwarzanie danych")
         finish_label.pack(pady=10)
 
-        start_training_button = tk.Button(button_frame, text="Rozpocznij uczenie maszynowe", command=lambda: start_training(data_array, np.array(labels), root))
+        start_training_button = tk.Button(button_frame, text="Rozpocznij uczenie maszynowe",
+                                          command=lambda: start_training(data_array, np.array(labels), root))
         start_training_button.pack(side=tk.RIGHT, padx=5)
 
         close_button = tk.Button(button_frame, text="Zakończ", command=root.quit)
@@ -239,9 +252,11 @@ def preprocess_videos_with_progress(data_path='MP_Data'):
     threading.Thread(target=process_videos).start()
     root.mainloop()
 
+
 def save_preprocessed_data(data, labels, filename='preprocessed_data.npz'):
     np.savez_compressed(filename, data=data, labels=labels)
     print(f"Dane zapisane do pliku: {filename}")
+
 
 def center_window(root, width, height):
     screen_width = root.winfo_screenwidth()
@@ -250,12 +265,14 @@ def center_window(root, width, height):
     y = int((screen_height / 2) - (height / 2))
     root.geometry(f'{width}x{height}+{x}+{y}')
 
+
 def create_progress_bar(total, footer_text, display_visualization):
     root = tk.Tk()
     root.title("Progres Przetwarzania")
     width, height = 600, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
+    root.resizable(False, False)
 
     main_progress = ttk.Progressbar(root, orient="horizontal", length=500, mode="determinate", maximum=total)
     main_progress.pack(pady=20)
@@ -267,13 +284,14 @@ def create_progress_bar(total, footer_text, display_visualization):
     details_text = tk.Text(details_frame, wrap='word', height=10, state='disabled')
     details_text.pack(fill='both', expand=True)
 
-    details_button = tk.Button(root, text="Pokaż szczegóły", command=lambda: toggle_details(details_frame, details_button, vis_button, width, height))
+    details_button = tk.Button(root, text="Pokaż szczegóły",
+                               command=lambda: toggle_details(details_frame, details_button, vis_button, width, height))
     details_button.pack(pady=10)
 
     vis_button = tk.Button(root, text="Wyświetl wizualizację", command=display_visualization)
 
     progress_text = tk.StringVar()
-    progress_text.set("Trwa weryfikacja plików...")  # Dodanie domyślnego napisu
+    progress_text.set("Trwa weryfikacja plików...")
     progress_label = tk.Label(root, textvariable=progress_text)
     progress_label.pack(pady=10)
 
@@ -300,12 +318,14 @@ def create_progress_bar(total, footer_text, display_visualization):
 
     return root, main_progress, progress_text, details_text, button_frame, footer_label
 
+
 def create_training_progress_bar(total):
     root = tk.Tk()
     root.title("Progres Uczenia Maszynowego")
     width, height = 600, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
+    root.resizable(False, False)
 
     main_progress = ttk.Progressbar(root, orient="horizontal", length=500, mode="determinate", maximum=total)
     main_progress.pack(pady=20)
@@ -317,7 +337,8 @@ def create_training_progress_bar(total):
     details_text = tk.Text(details_frame, wrap='word', height=10, state='disabled')
     details_text.pack(fill='both', expand=True)
 
-    details_button = tk.Button(root, text="Pokaż szczegóły", command=lambda: toggle_details(details_frame, details_button, width, height))
+    details_button = tk.Button(root, text="Pokaż szczegóły",
+                               command=lambda: toggle_details(details_frame, details_button, width, height))
     details_button.pack(pady=10)
 
     progress_text = tk.StringVar()
@@ -329,11 +350,11 @@ def create_training_progress_bar(total):
 
     finish_label = tk.Label(root, text="Proces uczenia maszynowego zakończony")
     finish_label.pack()
-    finish_label.pack_forget()  # Ukryj na początku
+    finish_label.pack_forget()
 
     close_button = tk.Button(root, text="Zakończ", command=root.quit)
     close_button.pack()
-    close_button.pack_forget()  # Ukryj na początku
+    close_button.pack_forget()
 
     footer_label = tk.Label(root, text="Autor: Damian Jamroży")
     footer_label.pack(side=tk.BOTTOM, pady=10)
@@ -352,13 +373,13 @@ def create_training_progress_bar(total):
 
     return root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button
 
+
 def train_model(data, labels):
     total_epochs = 150
 
     label_encoder = LabelEncoder()
     labels = label_encoder.fit_transform(labels)
 
-    # Zapisz klasy do pliku classes.npy
     np.save('classes.npy', label_encoder.classes_)
 
     num_samples, num_timesteps, num_features = data.shape
@@ -383,7 +404,8 @@ def train_model(data, labels):
     checkpoint = ModelCheckpoint('best_model.h5', monitor='val_accuracy', save_best_only=True, mode='max')
     early_stopping = EarlyStopping(monitor='val_accuracy', patience=20, restore_best_weights=True)
 
-    root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button = create_training_progress_bar(total_epochs)
+    root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button = create_training_progress_bar(
+        total_epochs)
 
     root.update_idletasks()
 
@@ -391,7 +413,8 @@ def train_model(data, labels):
         main_progress['value'] = epoch + 1
         progress_text.set(f"Przetworzono {epoch + 1}/{total_epochs} epok")
         details_text.config(state='normal')
-        details_text.insert('end', f"Epoka {epoch + 1} - Strata: {logs['loss']:.4f}, Dokładność: {logs['accuracy']:.4f}, Walidacja Strata: {logs['val_loss']:.4f}, Walidacja Dokładność: {logs['val_accuracy']:.4f}\n")
+        details_text.insert('end',
+                            f"Epoka {epoch + 1} - Strata: {logs['loss']:.4f}, Dokładność: {logs['accuracy']:.4f}, Walidacja Strata: {logs['val_loss']:.4f}, Walidacja Dokładność: {logs['val_accuracy']:.4f}\n")
         details_text.yview('end')
         details_text.config(state='disabled')
         root.update_idletasks()
@@ -399,39 +422,162 @@ def train_model(data, labels):
     def train_model_thread():
         model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=total_epochs, batch_size=32,
                   callbacks=[checkpoint, early_stopping, tf.keras.callbacks.LambdaCallback(on_epoch_end=on_epoch_end)])
-        finish_label.pack()  # Pokaż po zakończeniu
-        close_button.pack(pady=5)  # Pokaż po zakończeniu
+        finish_label.pack()
+        close_button.pack(pady=5)
         root.update_idletasks()
 
     threading.Thread(target=train_model_thread).start()
     root.mainloop()
+
 
 def start_training(data, labels, existing_root):
     if existing_root:
         existing_root.destroy()
     threading.Thread(target=lambda: train_model(data, labels)).start()
 
-def main():
-    data_path = 'MP_Data'
-    preprocessed_file = 'preprocessed_data.npz'
 
-    if not os.path.exists(preprocessed_file):
+def show_initial_window():
+    root = tk.Tk()
+    root.title("Uczenie maszynowe sekwencji gestów")
+    width, height = 600, 300
+    center_window(root, width, height)
+    root.attributes('-topmost', True)
+    root.resizable(False, False)
+
+    def open_pdf(event):
+        os.system("start pdf/Informacje.pdf")
+
+    welcome_text = ("Witam w programie uczenia maszynowego sekwencji gestów ludzkiego ciała. Program ten "
+                    "wykorzystuje wieloprocesowość. Przed uruchomieniem dalszego etapu, upewnij się, że Twój hardware "
+                    "spełnia ")
+    welcome_link = tk.Label(root, text="wymagania sprzętowe.", fg="blue", cursor="hand2")
+    welcome_link.bind("<Button-1>", open_pdf)
+
+    instructions_text = "Wybierz katalog z danymi do przetworzenia. Struktura powinna być następująca: {Wybrany katalog}/{Nazwa sekwencji ruchu}/{pliki.avi}"
+
+    label_welcome = tk.Label(root, text=welcome_text, wraplength=550, justify="left")
+    label_welcome.pack(pady=10)
+    welcome_link.pack()
+
+    label_instructions = tk.Label(root, text=instructions_text, wraplength=550, justify="left")
+    label_instructions.pack(pady=10)
+
+    frame_path = tk.Frame(root)
+    frame_path.pack(pady=10)
+
+    path_label = tk.Label(frame_path, text="Ścieżka: ", wraplength=500, justify="left")
+    path_label.pack(side="left")
+
+    path_var = tk.StringVar()
+    path_entry = tk.Entry(frame_path, textvariable=path_var, width=50)
+    path_entry.pack(side="left", padx=10)
+
+    def choose_directory():
+        path = filedialog.askdirectory()
+        if path:
+            path_var.set(path)
+            check_directory_structure(path)
+
+    choose_button = tk.Button(frame_path, text="Wybierz katalog", command=choose_directory)
+    choose_button.pack(side="left")
+
+    validation_label = tk.Label(root, text="", wraplength=550)
+    validation_label.pack(pady=10)
+
+    def check_directory_structure(path):
+        valid_structure = True
+        for gesture in os.listdir(path):
+            gesture_path = os.path.join(path, gesture)
+            if os.path.isdir(gesture_path):
+                if not any(file.endswith('.avi') for file in os.listdir(gesture_path)):
+                    valid_structure = False
+                    break
+            else:
+                valid_structure = False
+                break
+
+        if valid_structure:
+            validation_label.config(text="Struktura spełnia wymagania", fg="green", font=("Arial", 10, "bold"))
+            start_button.config(state="normal")
+        else:
+            validation_label.config(text="Struktura nie spełnia wymagań!", fg="red", font=("Arial", 10, "bold"))
+            start_button.config(state="disabled")
+
+    def start_analysis():
+        data_path = path_var.get()
+        root.destroy()
         preprocess_videos_with_progress(data_path)
 
-    if os.path.exists(preprocessed_file):
-        npzfile = np.load(preprocessed_file)
-        data = npzfile['data']
-        labels = npzfile['labels']
-        print(f"Wczytano dane: {data.shape}, etykiety: {labels.shape}")
-    else:
-        print("Błąd: Plik przetworzonych danych nie został utworzony.")
-        return
+    start_button = tk.Button(root, text="Rozpocznij analizę", command=start_analysis, state="disabled")
+    start_button.pack(pady=10)
 
-    if len(data) > 0 and len(labels) > 0:
-        print("Rozpoczynanie trenowania modelu...")
-        start_training(data, labels, None)
+    footer_label = tk.Label(root, text="Autor: Damian Jamroży")
+    footer_label.pack(side="bottom", pady=10)
+
+    root.mainloop()
+
+
+def show_preprocessed_data_window():
+    root = tk.Tk()
+    root.title("Uczenie maszynowe sekwencji gestów")
+    width, height = 600, 200
+    center_window(root, width, height)
+    root.attributes('-topmost', True)
+    root.resizable(False, False)
+
+    def open_pdf(event):
+        os.system("start pdf/Informacje.pdf")
+
+    welcome_text = ("Witam w programie uczenia maszynowego sekwencji gestów ludzkiego ciała. Program ten "
+                    "wykorzystuje wieloprocesowość. Przed uruchomieniem dalszego etapu, upewnij się, że Twój hardware "
+                    "spełnia ")
+    welcome_link = tk.Label(root, text="wymagania sprzętowe.", fg="blue", cursor="hand2")
+    welcome_link.bind("<Button-1>", open_pdf)
+
+    detection_text = "Program wykrył przetworzone dane. Czy chcesz rozpocząć uczenie maszynowe na obecnych danych?"
+
+    label_welcome = tk.Label(root, text=welcome_text, wraplength=550, justify="left")
+    label_welcome.pack(pady=10)
+    welcome_link.pack()
+
+    label_detection = tk.Label(root, text=detection_text, wraplength=550, justify="left")
+    label_detection.pack(pady=10)
+
+    button_frame = tk.Frame(root)
+    button_frame.pack(pady=10)
+
+    def return_to_initial():
+        root.destroy()
+        show_initial_window()
+
+    def start_training_existing():
+        root.destroy()
+        if os.path.exists('preprocessed_data.npz'):
+            npzfile = np.load('preprocessed_data.npz')
+            data = npzfile['data']
+            labels = npzfile['labels']
+            start_training(data, labels, None)
+
+    back_button = tk.Button(button_frame, text="Wróć do wyboru danych", command=return_to_initial)
+    back_button.pack(side="left", padx=10)
+
+    start_button = tk.Button(button_frame, text="Rozpocznij uczenie maszynowe", command=start_training_existing)
+    start_button.pack(side="right", padx=10)
+
+    footer_label = tk.Label(root, text="Autor: Damian Jamroży")
+    footer_label.pack(side="bottom", pady=10)
+
+    root.mainloop()
+
+
+def main():
+    preprocessed_file = 'preprocessed_data.npz'
+
+    if os.path.exists(preprocessed_file):
+        show_preprocessed_data_window()
     else:
-        print("Brak danych do trenowania modelu.")
+        show_initial_window()
+
 
 if __name__ == "__main__":
     main()
