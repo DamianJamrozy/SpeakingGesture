@@ -1,0 +1,61 @@
+/*Main*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Lato&family=Open+Sans&family=Poppins&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap&subset=latin,latin-ext');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0B0121;
+    font-family: 'Montserrat', sans-serif;
+    color: #ECECEC;
+    overflow-x: hidden; /* Ukrywa poziome przewijanie */
+}
+/*End Main*/
+
+
+/*Menu*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0B0121;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+.active {
+    background-color: #04AA6D;
+}
+/*End Menu*/
+
+
+/*Hero*/
+.hero {
+    display: grid;
+    place-items: center; /* Wyœrodkowanie poziome i pionowe */
+    width: 100vw; /* Pe³na szerokoœæ przegl¹darki */
+    height: 100vh; /* Pe³na wysokoœæ przegl¹darki */
+    background-image: url(../img/Hero-Background.png);
+    background-size: cover; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+    padding-top:170px;
+}
+/*End Hero*/
