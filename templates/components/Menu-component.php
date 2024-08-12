@@ -3,9 +3,11 @@
 
 <nav>
     <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="services.php">Services</a></li>
-        <li><a href="contact.php">Contact</a></li>
-        <li style="float:right"><a class="active" href="#about">About</a></li>
+        <li><a class="logo-bar" href="index.php"><img class="logo-image" src="../img/icons/logo-white.svg">Speaking Gesture</a></li>
+        <li class="nav-right last"><a href="services.php"><span class="button-nav-v1">Przejdź do aplikacji</span></a></li>
+        <li class="nav-right" ><a href="services.php"><span class="button-nav-v2">Zaloguj się</span></a></li>
+        <li class="nav-right"><a href="#about">O nas</a></li>
+        <li class="nav-right"><a href="contact.php">O projekcie</a></li>
+        <li class="nav-right"><a class="active" href="#home">Home</a></li>
     </ul>
 </nav>

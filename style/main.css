@@ -15,47 +15,157 @@ body {
 }
 
 .inter-body {
-    font-family: "Inter", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
 }
 
+button {
+   /* background-color: transparent;
+    color: #ECECEC;
+    border-radius: 50px;
+    border-color: #ECECEC;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    padding: 1em;*/
+    display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
+    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    border: 2px solid #007BFF; /* Kolor i gruboœæ obramowania */
+    border-radius: 25px; /* Zaokr¹glenie krawêdzi */
+    background-color: #007BFF; /* Kolor t³a przycisku */
+    color: white; /* Kolor tekstu */
+    text-align: center; /* Wyœrodkowanie tekstu */
+    text-decoration: none; /* Usuwa podkreœlenie */
+    font-size: 16px; /* Rozmiar czcionki */
+    cursor: pointer; /* Zmienia kursor na wskaŸnik przy najechaniu */
+    transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
+}
+
+
+.button-nav-v1 {
+    display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
+    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    border: 1px solid #ECECEC; /* Kolor i gruboœæ obramowania */
+    border-radius: 25px; /* Zaokr¹glenie krawêdzi */
+    background-color: transparent; /* Kolor t³a przycisku */
+    color: white; /* Kolor tekstu */
+    text-align: center; /* Wyœrodkowanie tekstu */
+    text-decoration: none; /* Usuwa podkreœlenie */
+    cursor: pointer; /* Zmienia kursor na wskaŸnik przy najechaniu */
+    transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
+}
+
+.button-nav-v2 {
+    display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
+    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    border: 2px solid #ECECEC; /* Kolor i gruboœæ obramowania */
+    border-radius: 25px; /* Zaokr¹glenie krawêdzi */
+    background-color: #ECECEC; /* Kolor t³a przycisku */
+    color: #0B0121; /* Kolor tekstu */
+    font-weight: 500;
+    text-align: center; /* Wyœrodkowanie tekstu */
+    text-decoration: none; /* Usuwa podkreœlenie */
+    cursor: pointer; /* Zmienia kursor na wskaŸnik przy najechaniu */
+    transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
+}
+
+.button-custom {
+    display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
+    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    border: 2px solid #007BFF; /* Kolor i gruboœæ obramowania */
+    border-radius: 25px; /* Zaokr¹glenie krawêdzi */
+    background-color: #007BFF; /* Kolor t³a przycisku */
+    color: white; /* Kolor tekstu */
+    text-align: center; /* Wyœrodkowanie tekstu */
+    text-decoration: none; /* Usuwa podkreœlenie */
+    font-size: 16px; /* Rozmiar czcionki */
+    cursor: pointer; /* Zmienia kursor na wskaŸnik przy najechaniu */
+    transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
+}
 /*End Main*/
 
 
 
 /*Menu*/
-ul {
+nav{
+    height: 7vh;
+}
+
+.inter-nav {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #0B0121;
+    height: 100%;
 }
 
-li {
+nav li {
     float: left;
+    height: 100%;
 }
 
-    li a {
-        display: block;
+    nav li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: white;
-        text-align: center;
         padding: 14px 16px;
         text-decoration: none;
+        height:100%;
     }
 
-        li a:hover:not(.active) {
+        nav li a:hover:not(.active) {
             background-color: #111;
         }
 
-.active {
-    background-color: #04AA6D;
+nav .active {
+    /*background-color: #007BFF;*/
+    font-weight: 600;
+}
+
+nav .logo-bar {
+    margin: 0;
+    padding: 0;
+    margin-left: 2em;
+    font-weight: 600;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .logo-image{
+    width: 1.5em;
+    margin-right: 0.5em;
+}
+
+nav .nav-right {
+    float: right;
+    margin-right: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .last {
+    margin-right: 10em;
+}
+
+.button-nav-v1{
+
 }
 /*End Menu*/
-
-
 /*Hero*/
 .hero {
     display: grid;
@@ -66,6 +176,6 @@ li {
     background-size: cover; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
     background-position: center 1vh; /* Wycentruje t³o */
     background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
-    padding-top:170px;
+    padding-top: 170px;
 }
 /*End Hero*/
