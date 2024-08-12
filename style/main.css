@@ -1,4 +1,4 @@
-/*Main*/
+/********************************************   Main   ********************************************/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -14,23 +14,25 @@ body {
     font-style: normal;
 }
 
-.inter-body {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
+h1 {
+    font-size: 5em;
+    font-weight: 550;
+    background: linear-gradient(to bottom right, #ECECEC 0%, rgba(236, 236, 236, 0) 150%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 0.1em;
+    padding: 0.1em;
+}
+
+.h1-more {
+    color: rgba(236, 236, 236, 0.65); /* Kolor #ECECEC z 65% widocznoœci¹ */
+    font-size: 1.2em; /* Przyk³adowy rozmiar czcionki, dostosuj wed³ug potrzeb */
+    line-height: 1.4; /* Przyk³adowa wysokoœæ linii dla lepszej czytelnoœci */
+    text-align: center;
 }
 
 button {
-   /* background-color: transparent;
-    color: #ECECEC;
-    border-radius: 50px;
-    border-color: #ECECEC;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-    padding: 1em;*/
     display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
     padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
     border: 2px solid #007BFF; /* Kolor i gruboœæ obramowania */
@@ -45,7 +47,7 @@ button {
 }
 
 
-.button-nav-v1 {
+.button-v1 {
     display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
     padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
     border: 1px solid #ECECEC; /* Kolor i gruboœæ obramowania */
@@ -58,7 +60,7 @@ button {
     transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
 }
 
-.button-nav-v2 {
+.button-v2 {
     display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
     padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
     border: 2px solid #ECECEC; /* Kolor i gruboœæ obramowania */
@@ -85,11 +87,16 @@ button {
     cursor: pointer; /* Zmienia kursor na wskaŸnik przy najechaniu */
     transition: background-color 0.3s ease; /* P³ynne przejœcie koloru przy najechaniu */
 }
+
+.transparent {
+    opacity: 0.75; /* 75% przezroczystoœci */
+}
 /*End Main*/
 
 
 
-/*Menu*/
+/********************************************   Menu   ********************************************/
+
 nav{
     height: 7vh;
 }
@@ -165,17 +172,34 @@ nav .last {
 .button-nav-v1{
 
 }
-/*End Menu*/
-/*Hero*/
-.hero {
-    display: grid;
-    place-items: center; /* Wyœrodkowanie poziome i pionowe */
+/* End Menu */
+
+
+
+/********************************************   Content   ********************************************/
+.content {
     width: 100vw; /* Pe³na szerokoœæ przegl¹darki */
     height: 100vh; /* Pe³na wysokoœæ przegl¹darki */
+
+}
+/*End Content*/
+
+
+
+/********************************************   Hero   ********************************************/
+.container {
     background-image: url(../img/Hero-Background.png);
     background-size: cover; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
     background-position: center 1vh; /* Wycentruje t³o */
     background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
-    padding-top: 170px;
+    padding-top: 22vh;
 }
+.hero {
+    display: grid;
+    place-items: center; /* Wyœrodkowanie poziome i pionowe */
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+
 /*End Hero*/
