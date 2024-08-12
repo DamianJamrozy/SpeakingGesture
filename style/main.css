@@ -14,6 +14,11 @@ body {
     font-style: normal;
 }
 
+a {
+    text-decoration: none;
+    color: #ECECEC;
+}
+
 h1 {
     font-size: 5em;
     font-weight: 550;
@@ -49,7 +54,7 @@ button {
 
 .button-v1 {
     display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
-    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    padding: 11px 21px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
     border: 1px solid #ECECEC; /* Kolor i gruboœæ obramowania */
     border-radius: 25px; /* Zaokr¹glenie krawêdzi */
     background-color: transparent; /* Kolor t³a przycisku */
@@ -62,7 +67,7 @@ button {
 
 .button-v2 {
     display: inline-block; /* Ustawia, aby element by³ blokiem o okreœlonych wymiarach */
-    padding: 10px 20px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
+    padding: 11px 21px; /* Wewnêtrzne odstêpy dla lepszego wygl¹du */
     border: 2px solid #ECECEC; /* Kolor i gruboœæ obramowania */
     border-radius: 25px; /* Zaokr¹glenie krawêdzi */
     background-color: #ECECEC; /* Kolor t³a przycisku */
@@ -201,5 +206,88 @@ nav .last {
     padding-right: 10vw;
 }
 
+.hero .button-margin{
+    margin: 1em;
+}
+
+.teaser {
+    height: 60vh;
+    width: 50vw;
+    background-image: url(../img/previews/test-preview.png);
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+}
 
 /*End Hero*/
+
+
+
+/********************************************   Footer   ********************************************/
+footer {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding-top: 1vh;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-left, .footer-right {
+    width: 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-left {
+    padding-right: 10px;
+}
+
+.footer-right {
+    padding-left: 10px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.footer-bottom-left {
+    text-align: left;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center; /* Wyrównanie obrazka i tekstu w pionie */
+    justify-content: flex-end; /* Wyrównanie ca³oœci do prawej */
+    text-align: right;
+}
+
+    .footer-bottom-right img {
+        margin-right: 10px; /* Dystans miêdzy obrazkiem a tekstem */
+        vertical-align: middle; /* Ustawia obrazek na œrodku w linii */
+    }
+
+    .footer-bottom-right h3 {
+        display: flex;
+        align-items: center; /* Wyrównanie tekstu do œrodka */
+        margin: 0;
+        line-height: 1; /* Dopasowanie wysokoœci linii */
+    }
+
+footer p, footer h3 {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.copyright {
+    color: #939393;
+    font-size: 0.8em;
+}
