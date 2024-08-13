@@ -364,8 +364,8 @@ footer p, footer h3 {
 
 .glow-circle {
     text-align: center;
-    background-color: rgba(23, 7, 63, 1);
-    background-image: radial-gradient(circle, rgba(23, 7, 63, 1) 0%, rgba(11, 1, 33, 1) 10%);
+    background-color: rgba(23, 7, 63, 100);
+    background-image: radial-gradient(circle, rgba(23, 7, 63, 100) 0%, rgba(11, 1, 33, 1) 10%);
 }
 
 
@@ -411,14 +411,19 @@ footer p, footer h3 {
     0px -2px 10px rgba(233, 223, 255, 0.3), /* Drugi cieñ: X=0, Y=-2, Blur=10, kolor=E9DFFF z 30% kryciem */
     0px -2px 40px rgba(187, 155, 255, 0.15); /* Trzeci cieñ: X=0, Y=-2, Blur=40, kolor=BB9BFF z 15% kryciem */
     position: relative;
+    height: auto;
 }
 
 .box-left {
     width: 50%;
+    height: auto;
+    float: left;
 }
 
 .box-right {
     width: 50%;
+    height: auto;
+    float: right;
 }
 
 
@@ -483,4 +488,8 @@ footer p, footer h3 {
 
 .hidden-box-half + .hidden-box-half {
     margin-left: 2vw; /* Ustawia odstêp miêdzy divami na 10% szerokoœci kontenera */
+}
+
+.icons-box{
+    margin: -2em;
 }

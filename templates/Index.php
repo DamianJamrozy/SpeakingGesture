@@ -38,7 +38,7 @@
 
             <div class="boxes">
                 <div class="box-half">
-                    <img src="">
+                    <img class="icons-box" src="../img/icons/icon1.svg">
                     <h3> Ucz się języka migowego </h3>
                     <p>Nasza aplikacja oparta na sztucznej inteligencji pozwala na <br>
                         szybką i bezproblemową naukę języka migowego. Kurs <br>
@@ -49,7 +49,7 @@
                     <p><br><a href=""> Przejdź do nauki języka migowego </a></p>
                 </div>
                 <div class="box-half">
-                     <img src="">
+                     <img class="icons-box" src="../img/icons/icon2.svg">
                     <h3> Tłumacz </h3>
                     <p>Nasza aplikacja tłumacza bazuje na modelu AI tworzonego przez <br>
                     specjalistów w dziedzinie IT. Wpisz lub powiedz słowo, a nasz <br>
@@ -65,7 +65,7 @@
 
             <div class="box">
                 <div class="box-left">
-                    <img src="">
+                    <img class="icons-box" src="../img/icons/icon3.svg">
                     <h3> Program od środka </h3>
                     <p> Zaawansowane algorytmy stworzone przez dwóch przyjaciół i <br>
                     specjalistów w branży IT: inż. Damiana Jamrożego oraz inż. <br>
@@ -78,11 +78,14 @@
                     <p><br><a href=""> Wyświetl pracę dyplomową </a></p>
                 </div>
                 <div class="box-right">
-                 
+                    <img src="../img/previews/code-preview.svg">
                 </div>
+                <div style="clear: both;"></div>
                 
             </div>
             <div class="hidden-box"></div>
+
+
             <div class="box">
                 <center><h2>Rozbudowana analiza statystyczna</h2>
                 <p> Odblokuj możliwości analityczne i sprawdź dokładność wykonywanych gestów! <br>
