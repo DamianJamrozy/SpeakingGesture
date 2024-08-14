@@ -575,21 +575,48 @@ footer p, footer h3 {
 .member-one, .member-two, .member-three, .member-four {
     width: 25vw;
     height: 35vh;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Umieszcza elementy na dole */
 }
 
 .member-one {
     background-color: #B548C6;
+    background-color: rgb(251, 207, 40);
+    background-image: radial-gradient(circle, rgba(181, 72, 198, 1) 0%, rgba(121, 34, 136, 1) 100%), url(https://img.icons8.com/android/2x/happy.png);
+    background-size: auto;
+    background-position: left top;
+    background-repeat: repeat;
 }
 
 .member-two {
     background-color: #32A7E2;
+    background-image: url("../img/others/box-background.svg");
 }
 
 .member-three {
     background-color: #EC663C;
+    background-color: rgb(251, 207, 40);
+    background-image: radial-gradient(circle, rgba(236, 102, 60, 1) 0%, rgba(188, 81, 48, 1) 100%), url(https://img.icons8.com/android/2x/happy.png);
+    background-size: auto;
+    background-position: left top;
+    background-repeat: repeat;
 }
 
 .member-four {
     background-color: #FFBF47;
+    background-color: rgb(251, 207, 40);
+    background-image: radial-gradient(circle, rgba(255, 191, 71, 1) 0%, rgba(202, 150, 54, 1) 100%), url(https://img.icons8.com/android/2x/happy.png);
+    background-size: auto;
+    background-position: left top;
+    background-repeat: repeat;
 }
 
+.social-media-box {
+    position: relative;
+    width: 100%;
+    height: 5vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+}

@@ -21,7 +21,9 @@
             <div class="team-boxes">
                 <div class="team-box">
                     <div class="member-one">
-                    
+                        <div class="social-media-box">
+
+                        </div>
                     </div>
                     <h4> Inż. Damian Jamroży </h4>
                     <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, autor pracy dyplomowej.</p>
@@ -29,25 +31,31 @@
 
                 <div class="team-box">
                     <div class="member-two">
+                        <div class="social-media-box">
 
+                        </div>
                     </div>
-                    <h4> Inż. Damian Jamroży </h4>
-                    <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
+                    <h4> Inż. Patryk Arendt </h4>
+                    <p class="member-description">Motion capture model.</p>
                 </div>
 
                 <div class="team-box">
                     <div class="member-three">
+                        <div class="social-media-box">
 
-                    <</div>
-                    <h4> Inż. Damian Jamroży </h4>
+                        </div>
+                    </div>
+                    <h4> Dr Inż. Bogusław Twaróg </h4>
                     <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
                 </div>
 
                 <div class="team-box">
                     <div class="member-four">
+                        <div class="social-media-box">
 
+                        </div>
                     </div>
-                    <h4> Inż. Damian Jamroży </h4>
+                    <h4> Dr Inż. Wojciech Kozioł </h4>
                     <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
                 </div>
 
