@@ -14,34 +14,44 @@
             publikację oraz ogólno pojęty project managment. Druga część zespołu była odpowiedzialna za nadzór oraz <br>
             wsparcie merytoryczne powstającego projektu. </p>
 
-            <div class="teaser"></div>
+            <div class="teaser-about"></div>
         </div>
-        <div>
-            <div class="boxes">
-                <div class="box-half">
-                    <img src="">
-                    <h3> Ucz się języka migowego </h3>
-                    <p>Nasza aplikacja oparta na sztucznej inteligencji pozwala na <br>
-                        szybką i bezproblemową naukę języka migowego. Kurs <br>
-                        podzielony jest na kilka kategorii, które są wykorzystywane w <br>
-                        codziennym życiu osób głuchoniemych. Sprawdź jak wyglądają <br>
-                        wybrane gesty i naśladuj ich sekwencje.
-                    </p>
-                    <p><br><a href=""> Przejdź do nauki języka migowego </a></p>
+        <div class="team">
+            <h2> Skład zespołu </h2>
+            <div class="team-boxes">
+                <div class="team-box">
+                    <div class="member-one">
+                    
+                    </div>
+                    <h4> Inż. Damian Jamroży </h4>
+                    <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, autor pracy dyplomowej.</p>
                 </div>
-                <div class="box-half">
-                     <img src="">
-                    <h3> Tłumacz </h3>
-                    <p>Nasza aplikacja tłumacza bazuje na modelu AI tworzonego przez <br>
-                    specjalistów w dziedzinie IT. Wpisz lub powiedz słowo, a nasz <br>
-                    wirtualny asystent pokaże Ci jak wygląda wybrane słowo. <br>
-                    Zamigaj coś do kamery, a nasz program przetłumaczy język <br>
-                    migowy na język polski.
-                    </p>
-                    <p><br><a href=""> Przejdź do tłumacza języka migowego </a></p>
+
+                <div class="team-box">
+                    <div class="member-two">
+
+                    </div>
+                    <h4> Inż. Damian Jamroży </h4>
+                    <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
                 </div>
+
+                <div class="team-box">
+                    <div class="member-three">
+
+                    <</div>
+                    <h4> Inż. Damian Jamroży </h4>
+                    <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
+                </div>
+
+                <div class="team-box">
+                    <div class="member-four">
+
+                    </div>
+                    <h4> Inż. Damian Jamroży </h4>
+                    <p class="member-description">Inżynier oprogramowania, Project manager, UI/UX designer, Frontend developer, Backend developer, Programista SI, Motion capture model, Współautor pracy dyplomowej.</p>
+                </div>
+
             </div>
-            <div class="hidden-box-half-left"></div><div class="hidden-box-half-right"></div>
 
 </div>
 <?php include 'components/footer-component.php'; ?>

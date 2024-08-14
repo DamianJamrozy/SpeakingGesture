@@ -499,6 +499,15 @@ footer p, footer h3 {
 
 /**************************************************************************   Project.php   **************************************************************************/
 
+.teaser-project {
+    height: 60vh;
+    width: 50vw;
+    background-image: url(../img/others/img1.svg);
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+}
+
 .timeline {
     text-align: center;
     background-image: url("../img/diagrams/timeline.svg");
@@ -530,30 +539,57 @@ footer p, footer h3 {
 
 /**************************************************************************   About.php   **************************************************************************/
 
-.timeline {
-    text-align: center;
-    background-image: url("../img/diagrams/timeline.svg");
+.teaser-about {
+    height: 60vh;
+    width: 50vw;
+    background-image: url(../img/others/img1.svg);
     background-size: contain;
     background-position: center 1vh; /* Wycentruje t³o */
     background-repeat: no-repeat;
-    height: 80vh;
 }
 
-.how-it-works-txt {
+.team{
     text-align: center;
-    height: 20vh;
-    display: flex;
-    justify-content: center; /* Wyœrodkowanie w poziomie */
-    align-items: center; /* Wyœrodkowanie w pionie */
-    height: 200px; /* Wysokoœæ kontenera */
+    margin-top: 10vh;
 }
 
-.how-it-works {
-    text-align: center;
-    background-image: url("../img/diagrams/how-it-works.svg");
-    background-size: contain;
-    background-position: center 1vh; /* Wycentruje t³o */
-    background-repeat: no-repeat;
-    height: 50vh;
-    margin-bottom: 10vh;
+.team-boxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dok³adnie dwa boxy w jednym wierszu */
+    gap: 20px; /* Przestrzeñ pomiêdzy elementami */
+    justify-content: center; /* Wyœrodkowanie ca³ego uk³adu */
+    max-width: 1000px; /* Maksymalna szerokoœæ kontenera */
+    margin: 0 auto; /* Wyœrodkowanie kontenera */
 }
+
+.team-box {
+    padding: 20px; /* Przyk³adowy padding */
+    text-align: left;
+    border-radius: 10px; /* Przyk³adowe zaokr¹glenie rogów */
+}
+
+.member-description{
+    color: #CCCCCC;
+}
+
+.member-one, .member-two, .member-three, .member-four {
+    width: 25vw;
+    height: 35vh;
+}
+
+.member-one {
+    background-color: #B548C6;
+}
+
+.member-two {
+    background-color: #32A7E2;
+}
+
+.member-three {
+    background-color: #EC663C;
+}
+
+.member-four {
+    background-color: #FFBF47;
+}
+
