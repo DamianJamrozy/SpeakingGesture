@@ -15,22 +15,7 @@
         </div>
         <div>
             
-            <div class="glow-circle">
-                <h2>Oś czasu</h2>
-
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-                <p>TUTAJ DODAĆ OŚ CZASU!</p>
-            </div>
+            <div class="timeline"> </div>
 
             <div class="glow-circle">
                 <h2>Opis projektu</h2>
@@ -76,24 +61,8 @@
             </div>
             <div class="hidden-box"></div>
             
-            
-            <div class="glow-circle">
-                <h2>Jak działa program?</h2>
-
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-                <p>TUTAJ DODAĆ WYKRES!</p>
-            </div>
+            <div class="glow-circle how-it-works-txt"><h2>Jak działa program?</h2></div>
+            <div class="how-it-works"></div>
 
 
         </div>

@@ -493,3 +493,67 @@ footer p, footer h3 {
 .icons-box{
     margin: -2em;
 }
+
+
+
+
+/**************************************************************************   Project.php   **************************************************************************/
+
+.timeline {
+    text-align: center;
+    background-image: url("../img/diagrams/timeline.svg");
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+    height: 80vh;
+}
+
+.how-it-works-txt {
+    text-align: center;
+    height: 20vh;
+    display: flex;
+    justify-content: center; /* Wyœrodkowanie w poziomie */
+    align-items: center; /* Wyœrodkowanie w pionie */
+    height: 200px; /* Wysokoœæ kontenera */
+}
+
+.how-it-works {
+    text-align: center;
+    background-image: url("../img/diagrams/how-it-works.svg");
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+    height: 50vh;
+    margin-bottom: 10vh;
+}
+
+
+/**************************************************************************   About.php   **************************************************************************/
+
+.timeline {
+    text-align: center;
+    background-image: url("../img/diagrams/timeline.svg");
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+    height: 80vh;
+}
+
+.how-it-works-txt {
+    text-align: center;
+    height: 20vh;
+    display: flex;
+    justify-content: center; /* Wyœrodkowanie w poziomie */
+    align-items: center; /* Wyœrodkowanie w pionie */
+    height: 200px; /* Wysokoœæ kontenera */
+}
+
+.how-it-works {
+    text-align: center;
+    background-image: url("../img/diagrams/how-it-works.svg");
+    background-size: contain;
+    background-position: center 1vh; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+    height: 50vh;
+    margin-bottom: 10vh;
+}
