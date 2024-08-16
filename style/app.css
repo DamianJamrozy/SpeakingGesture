@@ -657,45 +657,20 @@ footer p, footer h3 {
 
 .bi-globe2 {
     fill: #d2d2d2;
-    transition: fill 0.3s ease;
 }
 
 .bi-facebook {
     fill: #0e76a8;
-    transition: fill 0.3s ease;
 }
 
 .bi-instagram {
     fill: #8A1FAB;
-    transition: fill 0.3s ease;
 }
 
 .bi-linkedin {
     fill: #4C9FC1;
-    transition: fill 0.3s ease;
 }
 
 .bi-github {
     fill: #171515;
-    transition: fill 0.3s ease;
-}
-
-.bi-globe2:hover {
-    fill: white;
-}
-
-.bi-facebook:hover {
-    fill: #1585bb;
-}
-
-.bi-instagram:hover {
-    fill: #bf2dec;
-}
-
-.bi-linkedin:hover {
-    fill: #26b4ee;
-}
-
-.bi-github:hover {
-    fill: #b6b6b6;
 }
