@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #0B0121;
+    background: linear-gradient(90deg, #02030B 0%, #0F0925 100%);
     color: #ECECEC;
     overflow-x: hidden; /* Ukrywa poziome przewijanie */
     font-family: "Montserrat", sans-serif;
@@ -107,8 +107,11 @@ button {
 
 /********************************************   Menu   ********************************************/
 
-nav{
+.nav-top{
     height: 7vh;
+    z-index: 99;
+    position: absolute;
+    width: 100%;
 }
 
 .inter-nav {
@@ -123,7 +126,7 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #0B0121;
+    background-color: #02030B;
     height: 100%;
 }
 
@@ -136,20 +139,11 @@ nav li {
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
+        color: #ECECEC;
         padding: 14px 16px;
         text-decoration: none;
-        height:100%;
+        height: 100%;
     }
-
-/*        nav li a:hover:not(.active) {
-            background-color: #111;
-        }*/
-
-nav .active {
-    /*background-color: #007BFF;*/
-    font-weight: 600;
-}
 
 nav .logo-bar {
     margin: 0;
@@ -184,13 +178,86 @@ nav .last {
 }
 /* End Menu */
 
+/********************************************   Menu left   ********************************************/
+
+.nav-left {
+    height: 100vh;
+    width: 5vw;
+    float: left;
+    position: fixed;
+    top: 0;
+    z-index: 98;
+    padding-top: 10vh;
+}
+
+.icons-box1 {
+    width: 100%;
+    height: 10vh;
+    background-image: url(../img/icons/icon1.svg);
+    background-size: contain;
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+}
+
+.icons-box2 {
+    width: 100%;
+    height: 10vh;
+    background-image: url(../img/icons/icon4.svg);
+    background-size: contain;
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+}
+
+.icons-box3 {
+    width: 100%;
+    height: 10vh;
+    background-image: url(../img/icons/icon3.svg);
+    background-size: contain;
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+}
+
+.active1 {
+    height: 10vh;
+    margin-top: -10vh;
+    border-right: 5px solid transparent; /* Ustawienie przezroczystego obramowania */
+    background: linear-gradient(to right, transparent, #591DDD 60%, transparent) right center no-repeat;
+    background-size: 5px 50%; /* Ustawienie wielkoœci gradientu odpowiadaj¹cej gruboœci obramowania i wysokoœci obrazka */
+    transition: background-size 0.6s ease; /* U¿ycie background-size w transition */
+}
+
+.active2 {
+    height: 10vh;
+    margin-top: -10vh;
+    border-right: 5px solid transparent; /* Ustawienie przezroczystego obramowania */
+    background: linear-gradient(to right, transparent, #9627c9 60%, transparent) right center no-repeat;
+    background-size: 5px 50%; /* Ustawienie wielkoœci gradientu odpowiadaj¹cej gruboœci obramowania i wysokoœci obrazka */
+    transition: background-size 0.6s ease; /* U¿ycie background-size w transition */
+}
+
+.active3 {
+    height: 10vh;
+    margin-top: -10vh;
+    border-right: 5px solid transparent; /* Ustawienie przezroczystego obramowania */
+    background: linear-gradient(to right, transparent, #cb31af 60%, transparent) right center no-repeat;
+    background-size: 5px 50%; /* Ustawienie wielkoœci gradientu odpowiadaj¹cej gruboœci obramowania i wysokoœci obrazka */
+    transition: background-size 0.6s ease; /* U¿ycie background-size w transition */
+}
+
+.active1:hover, .active2:hover, .active3:hover {
+    background-size: 5px 60%;
+    transition: background-size 0.6s ease; /* U¿ycie background-size w transition */
+}  
+
+
+/* End Menu */
+
 
 
 /********************************************   Content   ********************************************/
 .content {
     width: 100vw; /* Pe³na szerokoœæ przegl¹darki */
     height: 100vh; /* Pe³na wysokoœæ przegl¹darki */
-
 }
 /*End Content*/
 
@@ -198,11 +265,7 @@ nav .last {
 
 /********************************************   Hero   ********************************************/
 .container {
-    background-image: url(../img/Hero-Background.png);
-    background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
-    background-position: center -8vh; /* Wycentruje t³o */
-    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
-    padding-top: 22vh;
+    padding-top: 10vh;
 }
 .hero {
     display: grid;
@@ -490,9 +553,7 @@ footer p, footer h3 {
     margin-left: 2vw; /* Ustawia odstêp miêdzy divami na 10% szerokoœci kontenera */
 }
 
-.icons-box{
-    margin: -2em;
-}
+
 
 
 

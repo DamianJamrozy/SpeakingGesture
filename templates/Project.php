@@ -31,14 +31,14 @@
                     <h3> Projekt - Praca magisterska </h3>
                     <p>Pomysł projektu zaproponowany przez dr inż. Wojciecha Kozioła spotkał się z aprobatą dwóch studentów inż. Patryka Arendta oraz inż. Damiana Jamrożego, którzy to podjęli się jego realizacji w ramach zbliżonej tematyki prac magisterskich. Dzieki wsparciu merytorycznemu dr inż. W. Kozioła oraz dr inż. Bogusława Twaroga udało im się stworzyć oprogramowanie, które łączy w sobie funkcje sztucznej inteligencji oraz problematyki języka migowego. Oprogramowanie, docelowo ma za zadanie rejestrować, analizować i tłumaczyć język migowy na język naturalny, jednakże w późniejszych fazach projektu, aplikacja została poszerzona o funkcje nauki języka migowego wraz z analizą poprawności wykonywanych sekwencji gestów przez użytkownika. To wszystko jest możliwe dzięki rozwojowi techologii i popularyzacji sztucznej inteligencji.
                     </p>
-                    <p><br><a href=""> Poznaj nasz zespół </a></p>
+                    <p><br><a href="About.php"> Poznaj nasz zespół </a></p>
                 </div>
                 <div class="box-half">
                      <img class="icons-box" src="../img/icons/icon2.svg">
                     <h3> Problematyka </h3>
                     <p>Nasz projekt skupia się wokół osób z dysfunkcjami słuchowymi. Osoby te, z powodu braku popularyzacji języka migowego, stale napotykają się na bariery językowe, które wykluczają ich z życia społecznego. Stworzona aplikacja ma wspierać ich w łatwiejszej komunikacji ze światem zewnętrznym, a także ma popularyzować naukę jezyka migowego. Prosty i intuicyjny interfejs użytkownika, w połączeniu z zaawansowaną logiką uczenia maszynowego pozwala na odczytywanie gestów w czasie rzeczywistym z jednoczesnym wyznaczaniem precyzji wykonanych sekwencji ruchów na podstawie utworzonego wcześniej modelu. Dzięki innowatorskim rozwiązaniom użytkownik może uczyć się języka migowego znacznie szybciej niż przy użyciu konkurencyjnych aplikacji bez konieczności wychodzenia z domu lub płacenia za drogie kursy.
                     </p>
-                    <p><br><a href=""> Przejdź do aplikacji </a></p>
+                    <p><br><a href="app/Dashboard.php"> Przejdź do aplikacji </a></p>
                 </div>
             </div>
             <div class="hidden-box-half-left"></div><div class="hidden-box-half-right"></div>

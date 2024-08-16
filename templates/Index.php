@@ -10,7 +10,7 @@
             <p class="h1-more">Dołącz do nas i naucz się języka migowego z pomocą<br>nowoczesnego narzędzia wspieranego przez sztuczną inteligencję.</p>
             <div class="button-margin">
                 <a href="services.php"><span class="button-v2" style="margin-right:1em;">Zaloguj się</span></a>
-                <a href="services.php"><span class="button-v1">Przejdź do aplikacji</span></a>
+                <a href="app/Dashboard.php"><span class="button-v1">Przejdź do aplikacji</span></a>
             </div>
 
             <div class="teaser"></div>
@@ -92,7 +92,7 @@
                 Nasza aplikacja w czasie rzeczywistym weryfikuje precyzję twoich ruchów i klasyfikuje je pod względem poprawności. <br>
                 Sprawdź swoje umiejętności i zamigaj już teraz.<br><br>
                 </p>
-                <a href="services.php"><span class="button-v1">Przejdź do aplikacji</span></a>
+                <a href="app/Dashboard.php"><span class="button-v1">Przejdź do aplikacji</span></a>
                 </center>
             </div>
             <div class="hidden-box"></div>
