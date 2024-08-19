@@ -7,9 +7,16 @@
         <div class="hero">
             <h1>Dashboard</h1>
 
-            <div class="teaser"></div>
+            <div class="teaser">
+            
+            
+            </div>
         </div>
        
 
 </div>
 <?php include 'components/footer-component-app.php'; ?>
+
+
+
+
