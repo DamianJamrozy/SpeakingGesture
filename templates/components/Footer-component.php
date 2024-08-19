@@ -11,8 +11,8 @@
         <p>Pigonia 1, pokój nr 201<br>Rzeszów, 35-310</p>
 
         <h3>Media społecznościowe</h3>
-        <p>Facebook</p>
-        <p>Instagram</p>
+        <a href="https://www.facebook.com/damian.jamrozy.xD"><p>Facebook</p></a>
+        <a href="https://www.instagram.com/skrrr_dj/"><p>Instagram</p></a>
     </div>
     <div class="footer-bottom">
         <div class="footer-bottom-left copyright">© 2024 SpeakingGesture by <a href="https://github.com/DamianJamrozy">Damian Jamroży</a>. All Rights Reserved.</div>
