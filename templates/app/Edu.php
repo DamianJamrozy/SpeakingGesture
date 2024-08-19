@@ -1,4 +1,4 @@
-<!-- index.php -->
+<!-- Edu.php -->
 <?php include 'components/header-component-app.php'; ?>
 <?php include 'components/menu-component-app.php'; ?>
 

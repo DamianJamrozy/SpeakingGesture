@@ -1,4 +1,4 @@
-<!-- index.php -->
+<!-- About.php -->
 <?php include 'components/header-component.php'; ?>
 <?php include 'components/menu-component.php'; ?>
 

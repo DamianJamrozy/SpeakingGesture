@@ -477,6 +477,32 @@ footer p, footer h3 {
     cursor: pointer; /* Zmienia kursor na wskaünik przy najechaniu */
 }
 
+.listening {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background-image: url(../img/icons/microphone-active1.svg);
+    }
+
+    25% {
+        background-image: url(../img/icons/microphone-active2.svg);
+    }
+
+    50% {
+        background-image: url(../img/icons/microphone-active1.svg);
+    }
+
+    75% {
+        background-image: url(../img/icons/microphone-active2.svg);
+    }
+
+    100% {
+        background-image: url(../img/icons/microphone-active1.svg);
+    }
+}
+
 .app-text {
     height: 100%;
     width: 80%;

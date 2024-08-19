@@ -12,7 +12,7 @@ if (isset($_GET['sign'])) {
         $subDirs = glob($dir . '/*', GLOB_ONLYDIR);
         foreach ($subDirs as $subDir) {
             $videoPath = $subDir . '/' . $sign . '.mp4';
-            error_log("Checking path: " . $videoPath); // Debugging line
+            error_log("Weryfikacja œcie¿ki: " . $videoPath); // Debugging line
             if (file_exists($videoPath)) {
                 echo json_encode(['path' => $videoPath]);
                 $found = true;
@@ -22,9 +22,9 @@ if (isset($_GET['sign'])) {
     }
 
     if (!$found) {
-        echo json_encode(['error' => 'Video not found']);
+        echo json_encode(['error' => 'Nie odnaleziono nagrania']);
     }
 } else {
-    echo json_encode(['error' => 'No sign specified']);
+    echo json_encode(['error' => 'Brak okreœlonego gestu']);
 }
 ?>

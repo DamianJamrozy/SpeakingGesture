@@ -10,7 +10,7 @@ function playSignVideo() {
         fetch(`../../scripts/php/search_video.php?sign=${signText}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('#Error-T-1 Wykryto problem z działaniem sieci');
                 }
                 return response.json();
             })
@@ -161,7 +161,8 @@ function playSignVideo() {
                 alert("Wystąpił problem podczas wyszukiwania nagrania.");
             });
     } else {
-        alert("Proszę wpisać nazwę gestu.");
+        console.log("#O-T5 Wywołano funkcję bez podanego gestu.");
+        //alert("Proszę wpisać nazwę gestu.");
     }
 }
 
@@ -172,5 +173,57 @@ document.getElementById('send-text').addEventListener('click', playSignVideo);
 document.getElementById('sign-text').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         playSignVideo();
+    }
+});
+
+
+
+
+// Web Speech API setup
+const microphone = document.getElementById('microphone');
+const signTextInput = document.getElementById('sign-text');
+let recognition;
+let isListening = false;
+
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'pl-PL';
+
+    recognition.onresult = function (event) {
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                signTextInput.value += event.results[i][0].transcript;
+            } else {
+                interimTranscript += event.results[i][0].transcript;
+            }
+        }
+        signTextInput.value = interimTranscript;
+    };
+
+    recognition.onerror = function (event) {
+        console.error('Speech recognition error', event.error);
+    };
+
+    recognition.onend = function () {
+        if (isListening) {
+            recognition.start(); // Restart if not manually stopped
+        }
+    };
+}
+
+microphone.addEventListener('click', function () {
+    if (!isListening) {
+        isListening = true;
+        signTextInput.placeholder = 'Trwa nasłuchiwanie...';
+        recognition.start();
+        microphone.classList.add('listening');
+    } else {
+        isListening = false;
+        signTextInput.placeholder = 'Wpisz szukany gest...';
+        recognition.stop();
+        microphone.classList.remove('listening');
     }
 });
