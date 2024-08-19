@@ -3,7 +3,6 @@ document.getElementById('camera-access').addEventListener('click', function () {
     document.querySelector('.app-camera').innerHTML = '<img src="http://localhost:5000/video_feed" alt="Video feed" class="app-camera">';
 });
 
-
 // Wczytanie nagrania do podlgądu
 function playSignVideo() {
     const signText = document.getElementById('sign-text').value.trim();
@@ -19,12 +18,16 @@ function playSignVideo() {
                 if (data.path) {
                     const signPreview = document.querySelector('.sign-preview');
                     const existingVideo = signPreview.querySelector('video');
+                    const existingCaptionBar = signPreview.querySelector('.caption-bar');
                     const infoRequired = signPreview.querySelector('.info-required');
 
                     // Usuwamy informację, jeśli istnieje
                     if (infoRequired) {
                         infoRequired.remove();
                     }
+
+                    // Czyszczenie inputa po odnalezieniu gestu
+                    document.getElementById('sign-text').value = '';
 
                     // Funkcja do dodania nowego wideo
                     function addNewVideo() {
@@ -36,6 +39,8 @@ function playSignVideo() {
                         videoElement.style.width = '100%';
                         videoElement.style.height = '100%';
                         videoElement.style.objectFit = 'cover';
+                        videoElement.style.opacity = '0'; // Ukrycie wideo na początku
+                        videoElement.style.transition = 'opacity 0.5s ease, filter 0.5s ease'; // Płynne przejście opacity i filtra (jasności)
 
                         // Dodanie ikony pauzy/odtwarzania
                         const playPauseOverlay = document.createElement('div');
@@ -48,10 +53,10 @@ function playSignVideo() {
                         playPauseOverlay.style.display = 'none'; // Ukryte domyślnie
                         playPauseOverlay.style.pointerEvents = 'none'; // Aby nie przeszkadzało w klikaniu
                         playPauseOverlay.innerHTML = `
-                            <svg viewBox="0 0 24 24" width="100" height="100" fill="white" class="play-icon">
+                            <svg viewBox="0 0 24 24" width="100" height="100" fill="white" class="play-icon" style="display:none;">
                                 <polygon points="9.33 7.5 16.5 12 9.33 16.5"></polygon>
                             </svg>
-                            <svg viewBox="0 0 24 24" width="100" height="100" fill="white" class="pause-icon" style="display:none;">
+                            <svg viewBox="0 0 24 24" width="100" height="100" fill="white" class="pause-icon">
                                 <rect x="6" y="4" width="4" height="16"></rect>
                                 <rect x="14" y="4" width="4" height="16"></rect>
                             </svg>
@@ -59,74 +64,90 @@ function playSignVideo() {
 
                         signPreview.appendChild(playPauseOverlay);
 
+                        // Usuwanie starego paska z napisem, jeśli istnieje
+                        if (existingCaptionBar) {
+                            existingCaptionBar.remove();
+                        }
+
+                        // Dodanie paska z podpisem gestu
+                        const captionBar = document.createElement('div');
+                        captionBar.classList.add('caption-bar'); // Dodanie klasy dla łatwej identyfikacji
+                        captionBar.style.position = 'absolute';
+                        captionBar.style.bottom = '0';
+                        captionBar.style.width = '100%';
+                        captionBar.style.borderBottomRightRadius = '20px';
+                        captionBar.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Czarny z 50% przezroczystością
+                        captionBar.style.color = 'white';
+                        captionBar.style.textAlign = 'center';
+                        captionBar.style.padding = '10px';
+                        captionBar.style.fontSize = '1.2rem';
+                        captionBar.style.boxSizing = 'border-box'; // Upewnienie się, że padding nie wpłynie na szerokość
+                        captionBar.style.opacity = '0'; // Ukrycie napisu na początku
+                        captionBar.style.transition = 'opacity 0.5s ease'; // Płynne przejście opacity
+                        captionBar.style.zIndex = '10'; // Ustawienie paska na wierzchu wideo
+                        captionBar.innerText = signText; // Tekst z nazwy gestu
+
+                        signPreview.appendChild(captionBar);
+
                         // Dodanie funkcji do zatrzymywania/wznawiania odtwarzania po kliknięciu
                         videoElement.addEventListener('click', function () {
                             if (videoElement.paused) {
                                 videoElement.play();
                                 playPauseOverlay.querySelector('.play-icon').style.display = 'none';
                                 playPauseOverlay.querySelector('.pause-icon').style.display = 'none';
+                                videoElement.style.filter = 'brightness(100%)'; // Płynne rozjaśnienie obrazu
+                                captionBar.style.opacity = '1'; // Ponowne pokazanie paska przy wznowieniu
+                                captionBar.style.zIndex = '10'; // Ustawienie paska na wierzchu po wznowieniu
                             } else {
                                 videoElement.pause();
                                 playPauseOverlay.querySelector('.pause-icon').style.display = 'block';
                                 playPauseOverlay.querySelector('.play-icon').style.display = 'none';
                                 playPauseOverlay.style.display = 'block';
+                                videoElement.style.filter = 'brightness(50%)'; // Płynne przyciemnienie obrazu
+                                captionBar.style.opacity = '0'; // Ukrycie paska podczas pauzy
                                 setTimeout(() => {
                                     playPauseOverlay.style.display = 'none';
                                 }, 500); // Ukrycie ikony pauzy po krótkim czasie
                             }
                         });
 
-                        // Dodanie przycisku pełnego ekranu
-                        const fullscreenButton = document.createElement('div');
-                        fullscreenButton.style.position = 'absolute';
-                        fullscreenButton.style.bottom = '10px';
-                        fullscreenButton.style.right = '10px';
-                        fullscreenButton.style.width = '30px';
-                        fullscreenButton.style.height = '30px';
-                        fullscreenButton.style.cursor = 'pointer';
-                        fullscreenButton.style.zIndex = '10'; // Zawsze na wierzchu
-                        fullscreenButton.innerHTML = `
-                            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
-                                <path d="M21 11V3h-8l3.29 3.29L7.41 15.17l1.42 1.42L18.71 7.71 22 11zM3 13v8h8l-3.29-3.29 10.88-10.88-1.42-1.42L7 16.29 3 13z"/>
-                            </svg>
-                        `;
-                        signPreview.appendChild(fullscreenButton);
-
-                        // Funkcja do przechodzenia w tryb pełnoekranowy
-                        fullscreenButton.addEventListener('click', function () {
-                            if (videoElement.requestFullscreen) {
-                                videoElement.requestFullscreen();
-                            } else if (videoElement.mozRequestFullScreen) { // Firefox
-                                videoElement.mozRequestFullScreen();
-                            } else if (videoElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                                videoElement.webkitRequestFullscreen();
-                            } else if (videoElement.msRequestFullscreen) { // IE/Edge
-                                videoElement.msRequestFullscreen();
-                            }
-                        });
-
-                        // Ukrycie kontrolerów w trybie pełnoekranowym
+                        // Ukrycie kontrolerów w trybie pełnoekranowym (zablokowanie pełnego ekranu)
                         videoElement.addEventListener('fullscreenchange', function () {
                             if (document.fullscreenElement) {
-                                videoElement.controls = false; // Wyłączenie kontrolerów w pełnym ekranie
-                            } else {
-                                videoElement.controls = false; // Upewnienie się, że kontrolki są wyłączone po wyjściu z pełnego ekranu
+                                document.exitFullscreen();
                             }
                         });
 
                         // Dodaj wideo do kontenera
                         signPreview.appendChild(videoElement);
+
+                        // Płynne pojawienie się nowego wideo
+                        setTimeout(() => {
+                            videoElement.style.opacity = '1'; // Ustawienie pełnej widoczności
+
+                            // Płynne pojawienie się paska z napisem po wideo
+                            setTimeout(() => {
+                                captionBar.style.opacity = '1'; // Ustawienie pełnej widoczności dla paska
+                            }, 300); // Opóźnienie dla płynnego pojawienia się paska
+                        }, 50); // Opóźnienie dla płynnego pojawienia się wideo
                     }
 
                     if (existingVideo) {
                         // Dodaj efekt fade-out do istniejącego wideo
-                        existingVideo.classList.add('fade-out');
+                        if (existingCaptionBar) {
+                            existingCaptionBar.style.opacity = '0'; // Ukrycie starego paska
+                        }
+                        existingVideo.style.opacity = '0';
+                        existingVideo.style.transition = 'opacity 0.5s ease, filter 0.5s ease'; // Płynne przejście opacity i filtra (jasności)
 
                         // Po krótkim opóźnieniu usuwamy stare wideo i dodajemy nowe
                         setTimeout(() => {
+                            if (existingCaptionBar) {
+                                existingCaptionBar.remove();
+                            }
                             existingVideo.remove();
                             addNewVideo();
-                        }, 500); // Opóźnienie 500ms, dostosuj w razie potrzeby
+                        }, 500); // Opóźnienie 500ms dla płynnego przejścia
                     } else {
                         // Jeśli nie ma wideo, po prostu dodaj nowe wideo
                         addNewVideo();
