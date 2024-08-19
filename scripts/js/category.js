@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let category2Elements = document.querySelectorAll('.category2');
     let back2category = document.querySelectorAll('.back-to-category');
 
-    // Dodajemy nas³uchiwanie na klikniêcia dla wszystkich category1
+    // Dodajemy nasÅ‚uchiwanie na klikniÄ™cia dla wszystkich category1
     category1Elements.forEach(function (element) {
         element.addEventListener('click', function () {
             document.getElementById('category-objects').style.display = 'none'; // Ukrycie category-objects
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Dodajemy nas³uchiwanie na klikniêcia dla wszystkich category2
+    // Dodajemy nasÅ‚uchiwanie na klikniÄ™cia dla wszystkich category2
     category2Elements.forEach(function (element) {
         element.addEventListener('click', function () {
             document.getElementById('category-objects').style.display = 'none'; // Ukrycie category-objects
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Dodajemy nas³uchiwanie na klikniêcia dla wszystkich category2
+    // Dodajemy nasÅ‚uchiwanie na klikniÄ™cia dla wszystkich category2
     back2category.forEach(function (element) {
         element.addEventListener('click', function () {
             document.getElementById('category-objects').style.display = 'block'; // Odkrycie category-objects

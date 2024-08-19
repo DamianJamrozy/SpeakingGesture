@@ -9,13 +9,28 @@
 
             <div class="app-box">
                 <div class="app-camera">
-                    zapytaj o wykorzystanie kamery / wczytaj po zgodzie
-                    <img src="http://localhost:5000/video_feed" alt="Video feed" class="app-camera">
+                    <div class="info-required">
+                        <center><h3> UWAGA! </h3></center>
+                    
+                        <p>Aplikacja do poprawnego działania wykorzystuje kamerę internetową.</p>
+                        <p>Upewnij się, że jest ona podłączona do urządzenia przed jej udostępnieniem.<br><br></p>
+                        
+                         <div style="text-align:center; padding-top:2vh; padding-bottom:5vh;">
+                            <span class="button-v1" id="camera-access">Udostępnij obraz z kamery</span>
+                        </div>
+                        <p> *Informujemy, że system przetwarza obraz z kamery w czasie rzeczywistym, jednakże nie dokonuje on jego zapisu ani przechowywania. </p>
+                        <!-- <img src="http://localhost:5000/video_feed" alt="Video feed" class="app-camera"> -->
+                    </div>
                 </div>
                 <div class="sign-preview">
-                    Tutaj ma się wczytać gest:<br>
-                        a) wpisany przez użytkownika<br>
-                        b) Wykryty przez program - przy czym powinien wykryć go przynajmniej 3-5 razy pod rząd aby go załadować<br>
+                    <div class="info-required">
+                        <center><h3> Informacja </h3></center>
+                        <p>Okno to odpowiada za wizualizację gestu.</p>
+                        <p>Wybierz gest za pomocą paska wyszukiwania lub pokaż go z wykorzystaniem kamery internetowej aby odtworzyć jego wizualizację.</p>
+                        Tutaj ma się wczytać gest:<br>
+                            a) wpisany przez użytkownika<br>
+                            b) Wykryty przez program - przy czym powinien wykryć go przynajmniej 3-5 razy pod rząd aby go załadować<br>
+                    </div>
                 </div>
             </div>
 
@@ -26,7 +41,7 @@
                 <div class="app-text">
                     <input type="text" placeholder="Wpisz szukany gest..." id="sign-text">
                 </div>
-                <div class="text-send">
+                <div class="text-send" id="send-text">
                     
                 </div>
             </div>
@@ -34,4 +49,5 @@
        
 
 </div>
+<script type="text/javascript" src="../../scripts/js/translator.js"></script>
 <?php include 'components/footer-component-app.php'; ?>

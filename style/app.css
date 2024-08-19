@@ -405,17 +405,21 @@ footer p, footer h3 {
 }
 
 .app-camera {
-    background-color: blue;
+/*    background-color: blue;*/
     float: left;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
 
 .sign-preview {
-    background-color: green;
+/*    background-color: green;*/
     float: right;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.info-required{
+    padding: 1vw;
 }
 
 .app-text-box {
