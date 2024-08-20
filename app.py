@@ -60,7 +60,7 @@ def pad_keypoints(keypoints, num_features):
         keypoints.extend([0] * (num_features - len(keypoints)))
     return keypoints
 
-def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.ttf", font_size=32, color=(0, 255, 0)):
+def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.ttf", font_size=16, color=(0, 255, 0)):
     pil_image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     draw = ImageDraw.Draw(pil_image)
     font = ImageFont.truetype(font_path, font_size)
