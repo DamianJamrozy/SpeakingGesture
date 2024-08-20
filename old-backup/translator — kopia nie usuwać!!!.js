@@ -254,8 +254,6 @@ microphone.addEventListener('click', function () {
 //Obsuga kamery - detekcja gestów z importem z pythona
 let lastGesture = null;
 let gestureCount = 0;
-let isVisualizing = false;
-let visualizationButton = null;
 
 async function checkGestures() {
     try {
@@ -274,81 +272,12 @@ async function checkGestures() {
 
             if (gestureCount === 3) {
                 console.log(`Gesture detected 3 times: ${detectedGesture}`);
-                if (!isVisualizing) {
-                    createVisualizationButton(detectedGesture);
-                } else {
-                    updateVisualization(detectedGesture);
-                }
             }
         }
     } catch (error) {
         console.error('Error fetching gesture data:', error);
     } finally {
+        // Wywołaj ponownie funkcję od razu po zakończeniu
         checkGestures();
     }
-}
-
-function createVisualizationButton(gesture) {
-    const appCamera = document.getElementById("camera-view");
-
-    // Sprawdzenie, czy przycisk już istnieje, aby uniknąć duplikacji
-    if (visualizationButton) {
-        updateVisualization(gesture);
-        return;
-    }
-
-    // Tworzenie elementu przycisku
-    visualizationButton = document.createElement('div');
-    visualizationButton.style.position = 'absolute'; // Pozycjonowanie absolutne względem .app-camera
-    visualizationButton.style.bottom = '0'; // Przy dolnej krawędzi .app-camera
-    visualizationButton.style.left = '0'; // Rozciąga się od lewej krawędzi
-    visualizationButton.style.width = '25vw'; // Szerokość na 100% kontenera
-    visualizationButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    visualizationButton.style.borderBottomLeftRadius = '20px';
-    visualizationButton.style.color = 'white';
-    visualizationButton.style.textAlign = 'center';
-    visualizationButton.style.paddingTop = '10px';
-    visualizationButton.style.paddingBottom = '10px';
-    visualizationButton.style.cursor = 'pointer';
-    visualizationButton.style.fontSize = '1rem';
-    visualizationButton.textContent = 'Wyświetl wizualizację pokazywanych gestów';
-
-    appCamera.appendChild(visualizationButton);
-
-    visualizationButton.addEventListener('click', function () {
-        if (!isVisualizing) {
-            playSignVideoWithGesture(gesture);
-            isVisualizing = true;
-            visualizationButton.textContent = 'Zatrzymaj wizualizacje w czasie rzeczywistym';
-        } else {
-            stopVisualization();
-        }
-    });
-}
-
-function updateVisualization(gesture) {
-    // Jeśli gest się zmienia, automatycznie aktualizujemy wizualizację
-    if (isVisualizing) {
-        playSignVideoWithGesture(gesture);
-    }
-}
-
-function stopVisualization() {
-    isVisualizing = false;
-    visualizationButton.textContent = 'Pokaż wizualizacje';
-}
-
-
-function stopVisualization() {
-    isVisualizing = false;
-    visualizationButton.textContent = 'Pokaż wizualizacje';
-}
-
-function playSignVideoWithGesture(gesture) {
-    // Przypisanie wartości detectedGesture do pola signText
-    const signTextInput = document.getElementById('sign-text');
-    signTextInput.value = gesture;
-
-    // Wywołanie funkcji playSignVideo
-    playSignVideo();
 }

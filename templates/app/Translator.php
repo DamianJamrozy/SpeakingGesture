@@ -8,7 +8,7 @@
             <h1>Tłumacz</h1>
 
             <div class="app-box">
-                <div class="app-camera">
+                <div class="app-camera" id="camera-view">
                     <div class="info-required">
                         <center><h3> UWAGA! </h3></center>
                     

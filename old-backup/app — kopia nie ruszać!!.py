@@ -28,9 +28,7 @@ frame_count = 0
 num_features = 1725
 frame_buffer = []
 detected_gestures = []
-sorted_gestures = []
-last_detected_gesture = None
-repetition_count = 0
+sorted_gestures = []  # Globalna zmienna do przechowywania posortowanych gestów
 
 def extract_keypoints(pose_results, hands_results, face_results):
     keypoints = []
@@ -68,7 +66,7 @@ def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.
     return cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
 
 def gen_frames():
-    global frame_count, last_detected_gesture, repetition_count
+    global frame_count, sorted_gestures
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose, \
             mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
             mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
@@ -97,19 +95,10 @@ def gen_frames():
                     prediction = model.predict(keypoints_array)
                     probabilities = prediction[0]
                     sorted_indices = np.argsort(probabilities)[::-1]
-                    predicted_gesture = label_encoder.classes_[sorted_indices[0]]
+                    sorted_gestures = [(label_encoder.classes_[i], probabilities[i] * 100) for i in sorted_indices[:5]]
 
                     if probabilities[sorted_indices[0]] > 0.6:
-                        if predicted_gesture == last_detected_gesture:
-                            repetition_count += 1
-                        else:
-                            last_detected_gesture = predicted_gesture
-                            repetition_count = 1
-
-                        if repetition_count == 3:
-                            print(f"Gesture '{predicted_gesture}' detected three times in a row")
-
-                        detected_gestures.append((predicted_gesture, probabilities[sorted_indices[0]] * 100))
+                        detected_gestures.append((label_encoder.classes_[sorted_indices[0]], probabilities[sorted_indices[0]] * 100))
                         if len(detected_gestures) > 3:
                             detected_gestures.pop(0)
 
@@ -138,11 +127,8 @@ def video_feed():
 
 @app.route('/gesture_details')
 def gesture_details():
-    global last_detected_gesture, repetition_count
-    if repetition_count == 3:
-        details = [{"gesture": last_detected_gesture, "probability": 100}]
-    else:
-        details = []
+    global sorted_gestures
+    details = [{"gesture": gesture, "probability": probability} for gesture, probability in sorted_gestures]
     return jsonify(details)
 
 if __name__ == '__main__':
