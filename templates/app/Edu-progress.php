@@ -29,8 +29,6 @@
             </div>
 
             <div class="app-text-box" style="display:none">
-                <div class="app-microphone" id="microphone">
-                </div>
                 <div class="app-text">
                     <input type="text" placeholder="Wpisz szukany gest..." id="sign-text">
                 </div>
@@ -39,15 +37,5 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../../scripts/js/translator.js"></script>
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sign = urlParams.get('sign');
-            if (sign) {
-                document.getElementById('sign-text').value = sign;
-                document.getElementById('send-text').click();
-            }
-        });
-    </script>
+    <script type="text/javascript" src="../../scripts/js/edu.js"></script>
 <?php include 'components/footer-component-app.php'; ?>
