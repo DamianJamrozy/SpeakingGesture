@@ -7,6 +7,13 @@
     </div>
 </footer>
 
+<?php
+// Pobierz nazwę aktualnie uruchomionego pliku (np. index.php)
+    $current_page = basename($_SERVER['PHP_SELF']);
+
+    if ($current_page == 'Dashboard.php'){ ?>
+        <script type="text/javascript" src='../../scripts/js/dashboard.js'></script>
+<?php } ?>
 
 </body>
 </html>
