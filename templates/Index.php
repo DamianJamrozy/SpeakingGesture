@@ -13,7 +13,7 @@
                 <a href="app/Dashboard.php"><span class="button-v1">Przejdź do aplikacji</span></a>
             </div>
 
-            <div class="teaser"></div>
+            <div class="teaser"><img src="../img/previews/dashboard-preview.jpg"></div>
         </div>
         <div>
             <div class="counter">

@@ -11,7 +11,7 @@
             przez inż. Damiana Jamrożego, studenta Uniwersytetu Rzeszowskiego.<br>
             Pod opieką promotora dr. inż. Bogusława Twaroga </p>
             
-            <div class="teaser"></div>
+            <div class="teaser"><img src="../img/previews/translator-preview.jpg"></div>
         </div>
         <div>
             

@@ -26,9 +26,7 @@
                         <center><h3> Informacja </h3></center>
                         <p>Okno to odpowiada za wizualizację gestu.</p>
                         <p>Wybierz gest za pomocą paska wyszukiwania lub pokaż go z wykorzystaniem kamery internetowej aby odtworzyć jego wizualizację.</p>
-                        <b style="color:red;">Tutaj ma się wczytać gest:<br>
-                            a) wpisany przez użytkownika<br>
-                            b) Wykryty przez program - przy czym powinien wykryć go przynajmniej 3-5 razy pod rząd aby go załadować<br></b>
+                        
                     </div>
                 </div>
             </div>
