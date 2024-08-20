@@ -9,70 +9,50 @@
 
             <div class="category-box">
                 <div id="category-objects">
-                    <div class="category category1">
-                        <div class="category-icon category-image1"></div>
-                        <div class="category-title">
-                            Zwroty grzecznościowe
-                        </div>
-                    </div>
-                    <div class="category category2">
-                        <div class="category-icon category-image2"></div>
-                        <div class="category-title">
-                            Podstawowe zwroty
-                        </div>
-                    </div>
+                    <?php
+                    $categories = [
+                        'Zwroty grzecznościowe' => 'category1',
+                        'Podstawowe zwroty' => 'category2',
+                    ];
+                    $baseDir = '../../video/';
+
+                    foreach ($categories as $label => $categoryClass) {
+                        $imageClass = $categoryClass === 'category1' ? 'category-image1' : 'category-image2';
+                        echo "<div class=\"category $categoryClass\">";
+                        echo "<div class=\"category-icon $imageClass\"></div>";
+                        echo "<div class=\"category-title\">$label</div>";
+                        echo "</div>";
+                    }
+                    ?>
                 </div>
 
-               
-                <!-- UKRYTE -->
-                    <div class="items" id="category1-items">
-                        <div class="category category1">
-                            <div class="category-icon category-image1"></div>
-                            <div class="category-title">
-                                Dzięki
-                            </div>
-                        </div>
-                        <div class="category category1">
-                            <div class="category-icon category-image1"></div>
-                            <div class="category-title">
-                                 Dziękuję
-                            </div>
-                        </div>
-                        <div class="category category1">
-                            <div class="category-icon category-image1"></div>
-                            <div class="category-title">
-                                 Prosić
-                            </div>
-                        </div>
-                        <div class="category category1">
-                            <div class="category-icon category-image1"></div>
-                            <div class="category-title">
-                                 Proszę
-                            </div>
-                        </div>
-                        <div class="category category1">
-                            <div class="category-icon category-image1"></div>
-                            <div class="category-title">
-                                 Przepraszać
-                            </div>
-                        </div>
-                    </div>
+                <?php
+                foreach ($categories as $label => $categoryClass) {
+                    $categoryDir = $baseDir . $label;
+                    $imageClass = $categoryClass === 'category1' ? 'category-image1' : 'category-image2';
+                    if (is_dir($categoryDir)) {
+                        echo "<div class=\"items\" id=\"$categoryClass-items\">";
+                        $subDirs = glob($categoryDir . '/*', GLOB_ONLYDIR);
 
-                    <div class="items" id="category2-items">
-                        <div class="category category2">
-                            <div class="category-icon category-image2"></div>
-                            <div class="category-title">
-                                Cześć
-                            </div>
-                        </div>
-                    </div>
+                        foreach ($subDirs as $subDir) {
+                            $signName = basename($subDir);
+                            echo "<div class=\"category $categoryClass\">";
+                            echo "<div class=\"category-icon $imageClass\"></div>";
+                            echo "<div class=\"category-title\" onclick=\"loadSign('$signName')\">$signName</div>";
+                            echo "</div>";
+                        }
+
+                        echo "</div>";
+                    }
+                }
+                ?>
             </div>
 
-            <span id="back-to-category" class="button-v1 back-to-category" >Powrót do kategorii</span>
+            <span id="back-to-category" class="button-v1 back-to-category">Powrót do kategorii</span>
+        </div>
     </div>
-       
-
 </div>
 
 <script type="text/javascript" src="../../scripts/js/category.js"></script>
+<script type="text/javascript" src="../../scripts/js/sign_loader.js"></script>
 <?php include 'components/footer-component-app.php'; ?>

@@ -1,0 +1,53 @@
+<!-- Edu-progress.php -->
+<?php include 'components/header-component-app.php'; ?>
+<?php include 'components/menu-component-app.php'; ?>
+
+<div class="content">
+    <div class="container">
+        <div class="hero">
+            <h1>Nauka języka migowego</h1>
+
+            <div class="app-box" style="margin-bottom:10vh;">
+                <div class="app-camera" id="camera-view">
+                    <div class="info-required">
+                        <center><h3> UWAGA! </h3></center>
+                        <p>Aplikacja do poprawnego działania wykorzystuje kamerę internetową.</p>
+                        <p>Upewnij się, że jest ona podłączona do urządzenia przed jej udostępnieniem.<br><br></p>
+                        <div style="text-align:center; padding-top:2vh; padding-bottom:5vh;">
+                            <span class="button-v1" id="camera-access">Udostępnij obraz z kamery</span>
+                        </div>
+                        <p> *Informujemy, że system przetwarza obraz z kamery w czasie rzeczywistym, jednakże nie dokonuje on jego zapisu ani przechowywania. </p>
+                    </div>
+                </div>
+                <div class="sign-preview">
+                    <div class="info-required">
+                        <center><h3> Informacja </h3></center>
+                        <p>Okno to odpowiada za wizualizację gestu.</p>
+                        <p>Wybierz gest za pomocą paska wyszukiwania lub pokaż go z wykorzystaniem kamery internetowej aby odtworzyć jego wizualizację.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-text-box" style="display:none">
+                <div class="app-microphone" id="microphone">
+                </div>
+                <div class="app-text">
+                    <input type="text" placeholder="Wpisz szukany gest..." id="sign-text">
+                </div>
+                <div class="text-send" id="send-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../scripts/js/translator.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sign = urlParams.get('sign');
+            if (sign) {
+                document.getElementById('sign-text').value = sign;
+                document.getElementById('send-text').click();
+            }
+        });
+    </script>
+<?php include 'components/footer-component-app.php'; ?>

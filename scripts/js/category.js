@@ -1,35 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Pobieramy wszystkie elementy category1 i category2
     let category1Elements = document.querySelectorAll('.category1');
     let category2Elements = document.querySelectorAll('.category2');
     let back2category = document.querySelectorAll('.back-to-category');
 
-    // Dodajemy nasłuchiwanie na kliknięcia dla wszystkich category1
     category1Elements.forEach(function (element) {
         element.addEventListener('click', function () {
-            document.getElementById('category-objects').style.display = 'none'; // Ukrycie category-objects
-            document.getElementById('category1-items').style.display = 'block'; // Odkrycie category1-items
-            document.getElementById('back-to-category').style.display = 'block'; // Odkrycie category1-items
+            document.getElementById('category-objects').style.display = 'none';
+            document.getElementById('category1-items').style.display = 'block';
+            document.getElementById('back-to-category').style.display = 'block';
         });
     });
 
-    // Dodajemy nasłuchiwanie na kliknięcia dla wszystkich category2
     category2Elements.forEach(function (element) {
         element.addEventListener('click', function () {
-            document.getElementById('category-objects').style.display = 'none'; // Ukrycie category-objects
-            document.getElementById('category2-items').style.display = 'block'; // Odkrycie category2-items
-            document.getElementById('back-to-category').style.display = 'block'; // Odkrycie category1-items
-            document.getElementById('category2-items').style.float = 'left'; // Odkrycie category2-items
+            document.getElementById('category-objects').style.display = 'none';
+            document.getElementById('category2-items').style.display = 'block';
+            document.getElementById('back-to-category').style.display = 'block';
+
+            // Ustawienie float: left dla elementów w category2
+            let category2Items = document.querySelectorAll('#category2-items .category');
+            category2Items.forEach(function (item) {
+                item.style.float = 'left';
+            });
         });
     });
 
-    // Dodajemy nasłuchiwanie na kliknięcia dla wszystkich category2
     back2category.forEach(function (element) {
         element.addEventListener('click', function () {
-            document.getElementById('category-objects').style.display = 'block'; // Odkrycie category-objects
-            document.getElementById('category1-items').style.display = 'none'; // Ukrycie category1-items
-            document.getElementById('category2-items').style.display = 'none'; // Ukrycie category2-items
-            document.getElementById('back-to-category').style.display = 'none'; // Ukrycie przycisku
+            document.getElementById('category-objects').style.display = 'block';
+            document.getElementById('category1-items').style.display = 'none';
+            document.getElementById('category2-items').style.display = 'none';
+            document.getElementById('back-to-category').style.display = 'none';
         });
     });
 });
+
+function loadSign(signName) {
+    window.location.href = `Edu-progress.php?sign=${encodeURIComponent(signName)}`;
+}

@@ -17,6 +17,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <nav class="nav-left">
     <div><a href="Dashboard.php"><div class="icons-box1"></div></a><div class="<?= $current_page == 'Dashboard.php' ? 'active1' : '' ?>"></div>
     <div><a href="Translator.php"><div class="icons-box2"></div></a><div class="<?= $current_page == 'Translator.php' ? 'active2' : '' ?>"></div>
-    <div><a href="Edu.php"><div class="icons-box3"></div></a><div class="<?= $current_page == 'Edu.php' ? 'active3' : '' ?>"></div>
+    <div><a href="Edu.php"><div class="icons-box3"></div></a><div class="<?= $current_page == 'Edu.php' ? 'active3' : '' ?> <?= $current_page == 'Edu-progress.php' ? 'active3' : '' ?>"></div>
 </nav>
 
