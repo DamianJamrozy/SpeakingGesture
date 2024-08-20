@@ -15,5 +15,6 @@
         <script type="text/javascript" src='../../scripts/js/dashboard.js'></script>
 <?php } ?>
 
+<script type="text/javascript" src='../../scripts/js/login.js'></script>
 </body>
 </html>

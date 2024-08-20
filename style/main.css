@@ -101,6 +101,25 @@ button {
 .transparent {
     opacity: 0.75; /* 75% przezroczystoœci */
 }
+
+.message {
+    width: 100vw;
+    text-align: center;
+    position: absolute;
+    background-color: #0B0121;
+    color: white;
+    margin-top: 6vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    padding: 1vh;
+    z-index: 999999;
+}
+
+.message.show {
+    opacity: 1;
+    visibility: visible;
+}
 /*End Main*/
 
 
@@ -590,12 +609,32 @@ footer p, footer h3 {
     background-repeat: repeat;
 }
 
+.person-image-1 {
+    background-image: url("../img/person/about-djamrozy.png");
+    background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+    width: 100%;
+    height: 100%;
+    margin-bottom: -5vh;
+}
+
 .member-two {
     background-color: #32A7E2;
     background-image: url("../img/others/box-background.svg");
     background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
     background-position: center; /* Wycentruje t³o */
     background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+}
+
+.person-image-2 {
+    background-image: url("../img/person/about-parendt.png");
+    background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+    width: 100%;
+    height: 100%;
+    margin-bottom: -5vh;
 }
 
 .member-three {
@@ -607,6 +646,16 @@ footer p, footer h3 {
     background-repeat: repeat;
 }
 
+.person-image-3 {
+    background-image: url("../img/person/about-dr.png");
+    background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+    width: 100%;
+    height: 100%;
+    margin-bottom: -5vh;
+}
+
 .member-four {
     background-color: #FFBF47;
     background-color: rgb(251, 207, 40);
@@ -614,6 +663,16 @@ footer p, footer h3 {
     background-size: auto;
     background-position: left top;
     background-repeat: repeat;
+}
+
+.person-image-4 {
+    background-image: url("../img/person/about-dr.png");
+    background-size: contain; /* Rozci¹ga t³o na ca³¹ szerokoœæ i wysokoœæ */
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu t³a */
+    width: 100%;
+    height: 100%;
+    margin-bottom: -5vh;
 }
 
 .social-media-box {

@@ -22,6 +22,6 @@
     </div>
 </footer>
 
-
+<script type="text/javascript" src='../scripts/js/login.js'></script>
 </body>
 </html>

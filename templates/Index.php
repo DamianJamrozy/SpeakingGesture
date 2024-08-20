@@ -9,7 +9,7 @@
             <h1>Sztuczna inteligencja<br>potrafi mówić!</h1>
             <p class="h1-more">Dołącz do nas i naucz się języka migowego z pomocą<br>nowoczesnego narzędzia wspieranego przez sztuczną inteligencję.</p>
             <div class="button-margin">
-                <a href="services.php"><span class="button-v2" style="margin-right:1em;">Zaloguj się</span></a>
+                <a href="#" id="login-off" class="login-off"><span class="button-v2" style="margin-right:1em;">Zaloguj się</span></a>
                 <a href="app/Dashboard.php"><span class="button-v1">Przejdź do aplikacji</span></a>
             </div>
 
@@ -46,7 +46,7 @@
                         codziennym życiu osób głuchoniemych. Sprawdź jak wyglądają <br>
                         wybrane gesty i naśladuj ich sekwencje.
                     </p>
-                    <p><br><a href=""> Przejdź do nauki języka migowego </a></p>
+                    <p><br><a href="app/Edu.php"> Przejdź do nauki języka migowego </a></p>
                 </div>
                 <div class="box-half">
                      <img class="icons-box" src="../img/icons/icon2.svg">
@@ -57,7 +57,7 @@
                     Zamigaj coś do kamery, a nasz program przetłumaczy język <br>
                     migowy na język polski.
                     </p>
-                    <p><br><a href=""> Przejdź do tłumacza języka migowego </a></p>
+                    <p><br><a href="app/Translator.php"> Przejdź do tłumacza języka migowego </a></p>
                 </div>
             </div>
             <div class="hidden-box-half-left"></div><div class="hidden-box-half-right"></div>
@@ -75,7 +75,7 @@
                     umożliwia również przyjmowanie poleceń głosowych oraz <br>
                     tekstowych tworząc spójne narzędzie edukacyjno - translatoryczne.
                     </p>
-                    <p><br><a href=""> Wyświetl pracę dyplomową </a></p>
+                    <p><br><a href="../PDF/djamrozy-praca-mgr.pdf"> Wyświetl pracę dyplomową </a></p>
                 </div>
                 <div class="box-right">
                     <img src="../img/previews/code-preview.svg">

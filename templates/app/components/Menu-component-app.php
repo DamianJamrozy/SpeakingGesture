@@ -9,7 +9,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <nav class="nav-top">
     <ul>
         <li> <a class="logo-bar" href="../index.php"><img class="logo-image" src="../../img/icons/logo-white.svg">Speaking Gesture</a> </li>
-        <li class="nav-right last"> <a href="services.php"> <span class="button-v1">Przejdź do aplikacji</span> </a></li>
+        <li class="nav-right last"> <a href="#" id="login-off" class="login-off"> <span class="button-v1">Wyloguj się</span> </a></li>
         <li class="nav-right"> <a href="../Index.php">Wróć do strony głównej </a></li>
     </ul>
 </nav>

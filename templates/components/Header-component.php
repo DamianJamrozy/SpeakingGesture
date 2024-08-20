@@ -9,3 +9,5 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css" title="Domyślny styl" type="text/css">
 </head>
+
+<div class="message" id="message"></div>

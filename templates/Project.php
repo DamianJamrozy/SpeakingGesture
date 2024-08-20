@@ -22,7 +22,7 @@
 
                 <p>Pełny opis zagadnienia można znaleźć klikając przycisk poniżej.</p>
                 <br><br>
-                 <a href="#"><span class="button-v1 transparent"> Otwórz pracę magisterską  </span></a>
+                 <a href="../PDF/djamrozy-praca-mgr.pdf"><span class="button-v1 transparent"> Otwórz pracę magisterską  </span></a>
             </div>
 
             <div class="boxes">
@@ -51,7 +51,7 @@
                     <p> Program dotyczący analizowania nagrań oraz trenowania modelu SI został utworzony za pośrednictwem języka PYTHON. Warstwa wizualna opracowana została za pomocą HTML, CSS, JavaScript.
   
                     </p>
-                    <p><br><a href=""> Wyświetl pracę dyplomową </a></p>
+                    <p><br><a href="../PDF/djamrozy-praca-mgr.pdf"> Wyświetl pracę dyplomową </a></p>
                 </div>
                 <div class="box-right">
                     <img src="../img/previews/code-preview.svg">
