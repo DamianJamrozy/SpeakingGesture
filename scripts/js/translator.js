@@ -284,7 +284,8 @@ async function checkGestures() {
     } catch (error) {
         console.error('Error fetching gesture data:', error);
     } finally {
-        checkGestures();
+        // Dodaj opóźnienie przed ponownym wywołaniem
+        setTimeout(checkGestures, 1000);  // 1 sekunda opóźnienia
     }
 }
 
@@ -352,3 +353,23 @@ function playSignVideoWithGesture(gesture) {
     // Wywołanie funkcji playSignVideo
     playSignVideo();
 }
+
+
+
+
+
+
+// Wyłączenie kamery po opuszczeniu zakładki
+document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+        fetch('http://localhost:5000/stop_camera')
+            .then(response => response.json())
+            .then(data => console.log(data.status))
+            .catch(error => console.error('Error stopping camera:', error));
+    } else if (document.visibilityState === 'visible') {
+        fetch('http://localhost:5000/start_camera')
+            .then(response => response.json())
+            .then(data => console.log(data.status))
+            .catch(error => console.error('Error starting camera:', error));
+    }
+});

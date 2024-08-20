@@ -7,7 +7,6 @@ import tensorflow as tf
 from keras.models import load_model
 from PIL import Image, ImageDraw, ImageFont
 from sklearn.preprocessing import LabelEncoder
-import threading
 
 app = Flask(__name__)
 CORS(app)
@@ -22,8 +21,6 @@ mp_hands = mp.solutions.hands
 mp_face_mesh = mp.solutions.face_mesh
 
 cap = cv2.VideoCapture(0)
-camera_active = True
-lock = threading.Lock()
 
 buffer_size = 240
 prediction_interval = 10
@@ -32,20 +29,6 @@ num_features = 1725
 frame_buffer = []
 detected_gestures = []
 sorted_gestures = []  # Globalna zmienna do przechowywania posortowanych gestów
-
-def start_camera():
-    global cap, camera_active
-    with lock:
-        if not camera_active:
-            cap = cv2.VideoCapture(0)
-            camera_active = True
-
-def stop_camera():
-    global cap, camera_active
-    with lock:
-        if camera_active:
-            cap.release()
-            camera_active = False
 
 def extract_keypoints(pose_results, hands_results, face_results):
     keypoints = []
@@ -88,12 +71,9 @@ def gen_frames():
             mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
             mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
         while True:
-            with lock:
-                if not camera_active:
-                    break
-                success, frame = cap.read()
-                if not success:
-                    break
+            success, frame = cap.read()
+            if not success:
+                break
 
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             pose_results = pose.process(frame_rgb)
@@ -143,7 +123,6 @@ def gen_frames():
 
 @app.route('/video_feed')
 def video_feed():
-    start_camera()  # Upewnij się, że kamera jest uruchomiona przed rozpoczęciem strumienia
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/gesture_details')
@@ -151,16 +130,6 @@ def gesture_details():
     global sorted_gestures
     details = [{"gesture": gesture, "probability": probability} for gesture, probability in sorted_gestures]
     return jsonify(details)
-
-@app.route('/start_camera')
-def start_camera_route():
-    start_camera()
-    return jsonify({"status": "camera started"})
-
-@app.route('/stop_camera')
-def stop_camera_route():
-    stop_camera()
-    return jsonify({"status": "camera stopped"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
