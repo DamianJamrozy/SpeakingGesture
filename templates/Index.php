@@ -20,11 +20,11 @@
                 Zaufało nam już ponad 5 osób, w tym takie organizacje jak:
                 <br>
                 <div class="wrapper">
-		            <div class="item"><img alt="" src="../img/brands/ur.png"></div>
-		            <div class="item"><img alt="" src="../img/brands/ur.png"></div>
-                    <div class="item"><img alt="" src="../img/brands/ur.png"></div>
-                    <div class="item"><img alt="" src="../img/brands/ur.png"></div>
-                    <div class="item"><img alt="" src="../img/brands/ur.png"></div>
+		            <a href="https://ur.edu.pl/" target="_blank"><div class="item"><img alt="Uniwersytet Rzeszowski" src="../img/brands/ur.png"></div></a>
+		            <a href="https://ur.edu.pl/" target="_blank"><div class="item"><img alt="Uniwersytet Rzeszowski" src="../img/brands/ur.png"></div></a>
+                    <a href="https://ur.edu.pl/" target="_blank"><div class="item"><img alt="Uniwersytet Rzeszowski" src="../img/brands/ur.png"></div></a>
+                    <a href="https://ur.edu.pl/" target="_blank"><div class="item"><img alt="Uniwersytet Rzeszowski" src="../img/brands/ur.png"></div></a>
+                    <a href="https://ur.edu.pl/" target="_blank"><div class="item"><img alt="Uniwersytet Rzeszowski" src="../img/brands/ur.png"></div></a>
 	            </div>
             </div>
 
@@ -75,7 +75,7 @@
                     umożliwia również przyjmowanie poleceń głosowych oraz <br>
                     tekstowych tworząc spójne narzędzie edukacyjno - translatoryczne.
                     </p>
-                    <p><br><a href="../PDF/djamrozy-praca-mgr.pdf"> Wyświetl pracę dyplomową </a></p>
+                    <p><br><a href="../PDF/djamrozy-praca-mgr.pdf" target="_blank"> Wyświetl pracę dyplomową </a></p>
                 </div>
                 <div class="box-right">
                     <img src="../img/previews/code-preview.svg">

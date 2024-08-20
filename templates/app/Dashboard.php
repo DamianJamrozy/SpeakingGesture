@@ -82,9 +82,9 @@
                                         Przykro mi ale twoja przeglądarka nie obsługuje plików video.<br>
                                         Zalecana jest zmiana przeglądarki na inną.
                                     </video>
-                                    <p> Dziękuję za skorzystanie z mojej aplikacji.</p>
+                                    <p> Dziękuję za odwiedzenie mojej aplikacji.</p>
                                     <p> Jest mi bardzo miło, że aplikacja ta pomaga w rozwoju świadomości na temat dysfunkcji ludzkiego ciała.</p>
-                                    <p> Do dyspozycji są dwie odmiany oprogramowania.</p>
+                                    
                                     <p> Zakładka w kolorze <span style="color:#9627c9; font-weight:600;">fioletowym</span> umożliwia przejście do tłumacza języka migowego. </p>
                                     <p> Zakładka w kolorze <span style="color:#cb31af; font-weight:600;">różowym</span> pozwala na naukę języka migowego. </p>
                                     <p> ~ D. Jamroży </p>

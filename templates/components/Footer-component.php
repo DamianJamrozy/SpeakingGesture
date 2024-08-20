@@ -11,17 +11,17 @@
         <p>Pigonia 1, pokój nr 201<br>Rzeszów, 35-310</p>
 
         <h3>Media społecznościowe</h3>
-        <a href="https://www.facebook.com/damian.jamrozy.xD"><p>Facebook</p></a>
-        <a href="https://www.instagram.com/skrrr_dj/"><p>Instagram</p></a>
+        <a href="https://www.facebook.com/damian.jamrozy.xD" target="_blank"><p>Facebook</p></a>
+        <a href="https://www.instagram.com/skrrr_dj/" target="_blank"><p>Instagram</p></a>
     </div>
     <div class="footer-bottom">
-        <div class="footer-bottom-left copyright">© 2024 SpeakingGesture by <a href="https://github.com/DamianJamrozy">Damian Jamroży</a>. All Rights Reserved.</div>
+        <div class="footer-bottom-left copyright">© 2024 SpeakingGesture by <a href="https://github.com/DamianJamrozy" target="_blank">Damian Jamroży</a>. All Rights Reserved.</div>
         <div class="footer-bottom-right">
             <h3><img style="width:2em;" src="../img/icons/logo-white.svg">Speaking Gesture</h3>
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src='../scripts/js/login.js'></script>
+<script type="text/javascript" src='../scripts/js/message.js'></script>
 </body>
 </html>
