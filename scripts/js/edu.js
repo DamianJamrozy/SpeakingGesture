@@ -1,6 +1,7 @@
+let urlParams = new URLSearchParams(window.location.search);
+let sign = urlParams.get('sign');
+
 document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const sign = urlParams.get('sign');
     if (sign) {
         document.getElementById('sign-text').value = sign;
         document.getElementById('send-text').click();
@@ -232,7 +233,9 @@ async function checkGestures() {
             if (gestureCount === 3) {
                 console.log(`Gesture detected 3 times: ${detectedGesture}`);
                 if (!isVisualizing) {
-                    //createVisualizationButton(detectedGesture);
+                    if (detectedGesture == sign) {
+                        console.log("Gratulacje!");
+                    }
                 } else {
                     //updateVisualization(detectedGesture);
                 }

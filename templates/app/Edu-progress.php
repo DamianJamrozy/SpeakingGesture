@@ -8,6 +8,27 @@
             <h1>Nauka języka migowego</h1>
 
             <div class="app-box" style="margin-bottom:10vh;">
+                <div class="results">
+                    <div class="results-ok">
+                        <div class="results-ok-icon"></div>
+                        <div class="results-ok-text">
+                            Gratulacje! Gest został wykonany poprawnie!
+                        </div>
+                    </div>
+                    <div class="results-return">
+                        <div class="results-return-icon">....</div>
+                        <div class="results-return-text">
+                            Wykonaj gest ponownie
+                        </div>
+                    </div>
+                    <div class="results-next">
+                        <div class="results-next-icon">....</div>
+                        <div class="results-next-text">
+                            Następny gest
+                        </div>
+                    </div>
+
+                </div>
                 <div class="app-camera" id="camera-view">
                     <div class="info-required">
                         <center><h3> UWAGA! </h3></center>
