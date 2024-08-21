@@ -54,5 +54,4 @@
 </div>
 
 <script type="text/javascript" src="../../scripts/js/category.js"></script>
-<script type="text/javascript" src="../../scripts/js/sign_loader.js"></script>
 <?php include 'components/footer-component-app.php'; ?>

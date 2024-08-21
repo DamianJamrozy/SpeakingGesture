@@ -8,13 +8,28 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 ///////////////////////////// Wczytanie obrazu z kamery po zgodzie /////////////////////////////
-document.getElementById('camera-access').addEventListener('click', function () {
-    document.querySelector('.app-camera').innerHTML = '<img src="http://localhost:5000/video_feed" alt="Video feed" class="app-camera">';
+function camera_start() {
+    const cameraView = document.getElementById('camera-view');
+    let imgElement = cameraView.querySelector('img');
+
+    if (!imgElement) {
+        // Jeśli obraz nie istnieje, twórz go
+        document.getElementById("camera-view").innerHTML = "";
+        imgElement = document.createElement('img');
+        imgElement.classList.add('app-camera');
+        cameraView.appendChild(imgElement);
+    }
+
+    imgElement.src = "http://localhost:5000/video_feed";
+    imgElement.alt = "Video feed";
+
     // Wywołaj funkcję po raz pierwszy
     checkGestures();
-});
+}
 
-///////////////////////////// Wczytanie nagrania do podlgądu /////////////////////////////
+document.getElementById('camera-access').addEventListener('click', camera_start);
+
+///////////////////////////// Wczytanie nagrania do podglądu /////////////////////////////
 function playSignVideo() {
     const signText = document.getElementById('sign-text').value.trim();
     if (signText) {
@@ -173,7 +188,6 @@ function playSignVideo() {
             });
     } else {
         console.log("#O-T5 Wywołano funkcję bez podanego gestu.");
-        //alert("Proszę wpisać nazwę gestu.");
     }
 }
 
@@ -188,13 +202,17 @@ document.getElementById('sign-text').addEventListener('keydown', function (event
 });
 
 
-///////////////////////////// Obsuga kamery - detekcja gestów z importem z pythona /////////////////////////////
+///////////////////////////// Obsługa kamery - detekcja gestów z importem z Pythona /////////////////////////////
 let lastGesture = null;
 let gestureCount = 0;
 let isVisualizing = false;
-let visualizationButton = null;
+let stopGestures = false; // Flaga do przerwania cyklicznego wywoływania
 
 async function checkGestures() {
+    if (stopGestures) {
+        return; // Przerwij działanie funkcji, jeśli flaga jest ustawiona
+    }
+
     try {
         const response = await fetch('http://localhost:5000/gesture_details');
         const data = await response.json();
@@ -221,23 +239,35 @@ async function checkGestures() {
     } catch (error) {
         console.error('Error fetching gesture data:', error);
     } finally {
-        // Dodaj opóźnienie przed ponownym wywołaniem
-        setTimeout(checkGestures, 1000);  // 1 sekunda opóźnienia
+        if (!stopGestures) {
+            // Dodaj opóźnienie przed ponownym wywołaniem tylko, jeśli nie zatrzymano funkcji
+            setTimeout(checkGestures, 1000);  // 1 sekunda opóźnienia
+        }
     }
 }
 
+function camera_stop() {
+    document.querySelector('.app-camera').innerHTML = 'Brak połączenia z kamerą';
+    stopGestures = true; // Ustaw flagę, aby zatrzymać cykliczne wywoływanie checkGestures
+}
 
 ///////////////////////////// Wyłączenie kamery po opuszczeniu zakładki /////////////////////////////
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') {
+        // Zatrzymaj kamerę, gdy strona jest niewidoczna
         fetch('http://localhost:5000/stop_camera')
             .then(response => response.json())
             .then(data => console.log(data.status))
             .catch(error => console.error('Error stopping camera:', error));
+        camera_stop();
     } else if (document.visibilityState === 'visible') {
+        // Uruchom kamerę, gdy strona staje się widoczna
         fetch('http://localhost:5000/start_camera')
             .then(response => response.json())
-            .then(data => console.log(data.status))
+            .then(data => {
+                console.log(data.status);
+                camera_start();
+            })
             .catch(error => console.error('Error starting camera:', error));
     }
 });

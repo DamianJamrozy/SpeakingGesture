@@ -75,7 +75,7 @@ def pad_keypoints(keypoints, num_features):
         keypoints.extend([0] * (num_features - len(keypoints)))
     return keypoints
 
-def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.ttf", font_size=20, color=(0, 255, 0)):
+def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.ttf", font_size=20, color=(0, 0, 0)):
     pil_image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     draw = ImageDraw.Draw(pil_image)
     font = ImageFont.truetype(font_path, font_size)
@@ -84,6 +84,7 @@ def draw_text_with_pil(image, text, position, font_path="scripts/python/calibri.
 
 def gen_frames():
     global frame_count, sorted_gestures
+    start_camera()  # Make sure camera is started
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose, \
             mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands, \
             mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
