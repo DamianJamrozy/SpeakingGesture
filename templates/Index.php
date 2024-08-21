@@ -67,12 +67,11 @@
                 <div class="box-left">
                     <img class="icons-box" src="../img/icons/icon3.svg">
                     <h3> Program od środka </h3>
-                    <p> Zaawansowane algorytmy stworzone przez dwóch przyjaciół i <br>
-                    specjalistów w branży IT: inż. Damiana Jamrożego oraz inż. <br>
-                    Patryka Arendta działają w oparciu o kamerę internetową oraz <br>
-                    technologie weebowe. Algorytmy stale śledzą oraz analizują <br>
-                    obraz z kamery wykrywając podobieństwa gestów, Program <br>
-                    umożliwia również przyjmowanie poleceń głosowych oraz <br>
+                    <p> Zaawansowane algorytmy stworzone przez inż. Damiana Jamrożego <br>
+                    działają w oparciu o kamerę internetową oraz technologie weebowe. <br>
+                    Algorytmy stale śledzą oraz analizują
+                    obraz z kamery wykrywając podobieństwa gestów, Program 
+                    umożliwia również przyjmowanie poleceń głosowych oraz
                     tekstowych tworząc spójne narzędzie edukacyjno - translatoryczne.
                     </p>
                     <p><br><a href="../PDF/djamrozy-praca-mgr.pdf" target="_blank"> Wyświetl pracę dyplomową </a></p>

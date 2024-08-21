@@ -4,7 +4,7 @@
         <p>D. Jamroży: <a href="mailto:damianjamrozy99@gmail.com">djamrozy@ur.edu.pl</a></p>
 
         <h3>Współpraca</h3>
-        <p>Chcesz z nami współpracować?<br>Napisz do nas na jeden z powyższych maili!</p>
+        <p>Chcesz z nami współpracować?<br>Napisz do nas na powyższego maila!</p>
     </div>
     <div class="footer-right">
         <h3>Adres</h3>

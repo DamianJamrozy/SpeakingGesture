@@ -48,7 +48,7 @@
                 <div class="box-left">
                     <img class="icons-box" src="../img/icons/icon3.svg">
                     <h3> Technologie </h3>
-                    <p> Program dotyczący analizowania nagrań oraz trenowania modelu SI został utworzony za pośrednictwem języka PYTHON. Warstwa wizualna opracowana została za pomocą HTML, CSS, JavaScript.
+                    <p> Program dotyczący analizowania nagrań oraz trenowania modelu SI został utworzony za pośrednictwem języka PYTHON. Warstwa wizualna opracowana została za pomocą HTML, CSS, JavaScript oraz PHP.
   
                     </p>
                     <p><br><a href="../PDF/djamrozy-praca-mgr.pdf" target="_blank"> Wyświetl pracę dyplomową </a></p>
