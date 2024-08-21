@@ -114,7 +114,7 @@ Contact: email damianjamrozy99@gmail.com or https://www.linkedin.com/in/djamrozy
 
 ![Logo](https://github.com/DamianJamrozy/SpeakingGesture/blob/master/img/others/Readme0.jpg)
 
-
+-------------------------------------------------------------------------------------------------
 Polish
 # Speaking Gesture
 
