@@ -8,25 +8,30 @@
             <h1>Nauka języka migowego</h1>
 
             <div class="app-box" style="margin-bottom:10vh;">
-                <div class="results">
-                    <div class="results-ok">
-                        <div class="results-ok-icon"></div>
-                        <div class="results-ok-text">
-                            Gratulacje! Gest został wykonany poprawnie!
+                <div class="results-gray-scale results-box"></div>
+                <div class="results results-box">
+                        <div class="results-ok">
+                            <div class="results-ok-icon"></div>
+                            <div class="results-text">
+                                Gratulacje!<br>Gest został wykonany poprawnie!
+                            </div>
                         </div>
-                    </div>
-                    <div class="results-return">
-                        <div class="results-return-icon">....</div>
-                        <div class="results-return-text">
-                            Wykonaj gest ponownie
+                    <a href="">
+                        <div class="results-return">
+                            <div class="results-return-icon"></div>
+                            <div class="results-text">
+                                Wykonaj gest ponownie
+                            </div>
                         </div>
-                    </div>
-                    <div class="results-next">
-                        <div class="results-next-icon">....</div>
-                        <div class="results-next-text">
-                            Następny gest
+                    </a>
+                    <a href="Edu.php">
+                        <div class="results-next">
+                            <div class="results-next-icon"></div>
+                            <div class="results-text">
+                                Następny gest
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
                 </div>
                 <div class="app-camera" id="camera-view">

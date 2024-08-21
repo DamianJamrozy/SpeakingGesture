@@ -235,9 +235,22 @@ async function checkGestures() {
                 if (!isVisualizing) {
                     if (detectedGesture == sign) {
                         console.log("Gratulacje!");
+                        document.querySelectorAll('.results-box').forEach(function (element) {
+                            element.style.display = 'block';
+                        });
+
+                        if (cameraOn == true) {
+                            // Zatrzymaj kamerę, gdy strona jest niewidoczna
+                            fetch('http://localhost:5000/stop_camera')
+                                .then(response => response.json())
+                                .then(data => console.log(data.status))
+                                .catch(error => console.error('Error stopping camera:', error));
+                            document.querySelector('.app-camera').innerHTML = '<div style="margin:1vw; font-weight:600;">Kamera została wyłączona...</div>';
+                            stopGestures = true; // Ustaw flagę, aby zatrzymać cykliczne wywoływanie checkGestures
+                        }
                     }
                 } else {
-                    //updateVisualization(detectedGesture);
+                    //Podoba Ci się kod? <3 Stworzenie tego programu w pełni zajęło mi dosłownie pół roku życia... Jak już masz kraść to oznacz mnie (np. mojego githuba) lub zacytuj moją pracę mgr. Prawnie - nie wyrażam zgody na wykorzystanie tego programu ani żadnych elementów z nim związanych w żaden sposób komercyjny / niekomercyjny. Zgoda może zostać udzielona indywidualnie - jeżeli chcesz złożyć prośbę napisz na maila damianjamrozy99@gmail.com ;)
                 }
             }
         }

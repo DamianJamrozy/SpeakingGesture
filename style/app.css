@@ -641,16 +641,106 @@ footer p, footer h3 {
 .results {
     position: absolute;
     padding: 1vw;
-    padding-top: 10vh;
+    padding-top: 20vh;
     width: 48vw;
-    height: 39vh;
-    background-color: blue;
+    height: 29vh;
     z-index: 99999999999;
+    border-radius: 20px;
+    display: none;
+    cursor: pointer;
+}
+
+.results-gray-scale {
+    position: absolute;
+    width: 50vw;
+    height: 50vh;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 99999999998;
+    border-radius: 20px;
+    display: none;
+}
+
+.results-ok {
+    width: 100%;
+    height: 10vh;
+    position: relative;
+    float: left;
+    bottom: 0;
+    margin-bottom: 5vh;
     border-radius: 20px;
 }
 
-.results-ok-icon, .results-return-icon, .results-next-icon{
-    width: 4vw;
-    height: 100%;
-    background-color: red;
+.results-return, .results-next {
+    width: 23vw;
+    height: 10vh;
+    position: relative;
+    float: left;
+    bottom: 0;
+    border-radius: 20px;
 }
+
+.results-ok,
+.results-return,
+.results-next,
+.results-text {
+    display: flex; /* Ustawienie Flexboxa */
+    align-items: center; /* Wyœrodkowanie w pionie */
+    justify-content: center; /* Wyœrodkowanie w poziomie */
+    text-align: center; /* Opcjonalnie, wyœrodkuj tekst wewn¹trz */
+}
+
+.results-return{
+    margin-right: 2vw;
+}
+
+.results-ok {
+    background-color: #6E3AE1;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(110, 58, 225, 1);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(110, 58, 225, 1);
+    box-shadow: 0px 0px 30px 0px rgba(110, 58, 225, 1);
+}
+
+.results-return {
+    background-color: #9A30CB;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(154, 48, 203, 1);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(154, 48, 203, 1);
+    box-shadow: 0px 0px 30px 0px rgba(154, 48, 203, 1);
+}
+
+.results-next {
+    background-color: #CB2EAE;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(203, 46, 174, 1);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(203, 46, 174, 1);
+    box-shadow: 0px 0px 30px 0px rgba(203, 46, 174, 1);
+}
+
+.results-ok-icon, .results-return-icon, .results-next-icon {
+    width: 8vh;
+    height: 8vh;
+    background-size: contain;
+    background-position: center; /* Wycentruje t³o */
+    background-repeat: no-repeat;
+    position: relative;
+    float: left;
+}
+
+.results-ok-icon {
+    background-image: url(../img/icons/results-ok.svg);
+}
+
+.results-return-icon {
+    background-image: url(../img/icons/results-return.svg);
+}
+
+.results-next-icon {
+    background-image: url(../img/icons/results-next.svg);
+}
+
+.results-text {
+    width: 50%;
+    height: 15vh;
+    position: relative;
+    float: left;
+    font-weight: 700;
+}
+
