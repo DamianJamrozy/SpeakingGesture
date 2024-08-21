@@ -7,7 +7,7 @@
         <div class="hero">
             <span class="button-v1 transparent"> Hej to my!  </span>
             <h1>Poznaj nasz zespół</h1>
-            <p class="h1-more">Nasz zespół składał się z 4 osób, bez których projekt by nie powstał. <br>
+            <p class="h1-more">Nasz zespół składa się z 4 osób, bez których projekt nie zostałby zrealizowany. <br>
             Pierwsza część zespołu odpowiadała za całokształt zaprojektowania oraz utworzenia oprogramowania<br>
             - wliczając w to inżynierię oprogramowania, utworzenie projektu szaty graficznej, frontendu, backendu, <br>
             utworzenie modelu SI języka migowego, zbieranie próbek, analizowanie pozyskanego materiału, testowanie, <br>
