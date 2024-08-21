@@ -21,9 +21,9 @@
                 </div>
                 <div class="sign-preview">
                     <div class="info-required">
-                        <center><h3> Informacja </h3></center>
-                        <p>Okno to odpowiada za wizualizację gestu.</p>
-                        <p>Wybierz gest za pomocą paska wyszukiwania lub pokaż go z wykorzystaniem kamery internetowej aby odtworzyć jego wizualizację.</p>
+                        <center><h3 style="color:red;"> Błąd </h3></center>
+                        <b><p style="color:red;">Gest nie został rozpoznany.</p>
+                        <a href="Edu.php"><p style="color:red;">Kliknij TUTAJ aby wrócić do wyboru gestu.</p></a></b>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 ///////////////////////////// Wczytanie obrazu z kamery po zgodzie /////////////////////////////
+let cameraOn = false;
 function camera_start() {
     const cameraView = document.getElementById('camera-view');
     let imgElement = cameraView.querySelector('img');
@@ -23,6 +24,7 @@ function camera_start() {
     imgElement.src = "http://localhost:5000/video_feed";
     imgElement.alt = "Video feed";
 
+    cameraOn = true;
     // Wywołaj funkcję po raz pierwszy
     checkGestures();
 }
@@ -230,9 +232,9 @@ async function checkGestures() {
             if (gestureCount === 3) {
                 console.log(`Gesture detected 3 times: ${detectedGesture}`);
                 if (!isVisualizing) {
-                    createVisualizationButton(detectedGesture);
+                    //createVisualizationButton(detectedGesture);
                 } else {
-                    updateVisualization(detectedGesture);
+                    //updateVisualization(detectedGesture);
                 }
             }
         }
@@ -247,27 +249,34 @@ async function checkGestures() {
 }
 
 function camera_stop() {
-    document.querySelector('.app-camera').innerHTML = 'Brak połączenia z kamerą';
-    stopGestures = true; // Ustaw flagę, aby zatrzymać cykliczne wywoływanie checkGestures
+    if (cameraOn == true) {
+        document.querySelector('.app-camera').innerHTML = '<div style="margin:1vw; font-weight:600;">Brak połączenia z kamerą.<br>Trwa nawiązywanie połączenia...</div>';
+        stopGestures = true; // Ustaw flagę, aby zatrzymać cykliczne wywoływanie checkGestures
+    }
 }
 
 ///////////////////////////// Wyłączenie kamery po opuszczeniu zakładki /////////////////////////////
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') {
-        // Zatrzymaj kamerę, gdy strona jest niewidoczna
-        fetch('http://localhost:5000/stop_camera')
-            .then(response => response.json())
-            .then(data => console.log(data.status))
-            .catch(error => console.error('Error stopping camera:', error));
-        camera_stop();
+        if (cameraOn == true) {
+            // Zatrzymaj kamerę, gdy strona jest niewidoczna
+            fetch('http://localhost:5000/stop_camera')
+                .then(response => response.json())
+                .then(data => console.log(data.status))
+                .catch(error => console.error('Error stopping camera:', error));
+            camera_stop();
+        }
     } else if (document.visibilityState === 'visible') {
-        // Uruchom kamerę, gdy strona staje się widoczna
-        fetch('http://localhost:5000/start_camera')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.status);
-                camera_start();
-            })
-            .catch(error => console.error('Error starting camera:', error));
+        if (cameraOn == true) {
+            // Uruchom kamerę, gdy strona staje się widoczna
+            fetch('http://localhost:5000/start_camera')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.status);
+                    camera_start();
+                })
+
+                .catch(error => console.error('Error starting camera:', error));
+        }
     }
 });

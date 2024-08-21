@@ -1,9 +1,26 @@
-// Wczytanie obrazu z kamery po zgodzie
-document.getElementById('camera-access').addEventListener('click', function () {
-    document.querySelector('.app-camera').innerHTML = '<img src="http://localhost:5000/video_feed" alt="Video feed" class="app-camera">';
+///////////////////////////// Wczytanie obrazu z kamery po zgodzie /////////////////////////////
+let cameraOn = false;
+function camera_start() {
+    const cameraView = document.getElementById('camera-view');
+    let imgElement = cameraView.querySelector('img');
+
+    if (!imgElement) {
+        // Jeśli obraz nie istnieje, twórz go
+        document.getElementById("camera-view").innerHTML = "";
+        imgElement = document.createElement('img');
+        imgElement.classList.add('app-camera');
+        cameraView.appendChild(imgElement);
+    }
+
+    imgElement.src = "http://localhost:5000/video_feed";
+    imgElement.alt = "Video feed";
+
+    cameraOn = true;
     // Wywołaj funkcję po raz pierwszy
     checkGestures();
-});
+}
+
+document.getElementById('camera-access').addEventListener('click', camera_start);
 
 // Wczytanie nagrania do podlgądu
 function playSignVideo() {
@@ -258,6 +275,9 @@ let isVisualizing = false;
 let visualizationButton = null;
 
 async function checkGestures() {
+    if (stopGestures) {
+        return; // Przerwij działanie funkcji, jeśli flaga jest ustawiona
+    }
     try {
         const response = await fetch('http://localhost:5000/gesture_details');
         const data = await response.json();
@@ -359,17 +379,35 @@ function playSignVideoWithGesture(gesture) {
 
 
 
-// Wyłączenie kamery po opuszczeniu zakładki
+function camera_stop() {
+    if (cameraOn == true) {
+        document.querySelector('.app-camera').innerHTML = '<div style="margin:1vw; font-weight:600;">Brak połączenia z kamerą.<br>Trwa nawiązywanie połączenia...</div>';
+        stopGestures = true; // Ustaw flagę, aby zatrzymać cykliczne wywoływanie checkGestures
+    }
+}
+
+///////////////////////////// Wyłączenie kamery po opuszczeniu zakładki /////////////////////////////
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') {
-        fetch('http://localhost:5000/stop_camera')
-            .then(response => response.json())
-            .then(data => console.log(data.status))
-            .catch(error => console.error('Error stopping camera:', error));
+        if (cameraOn == true) {
+            // Zatrzymaj kamerę, gdy strona jest niewidoczna
+            fetch('http://localhost:5000/stop_camera')
+                .then(response => response.json())
+                .then(data => console.log(data.status))
+                .catch(error => console.error('Error stopping camera:', error));
+            camera_stop();
+        }
     } else if (document.visibilityState === 'visible') {
-        fetch('http://localhost:5000/start_camera')
-            .then(response => response.json())
-            .then(data => console.log(data.status))
-            .catch(error => console.error('Error starting camera:', error));
+        if (cameraOn == true) {
+            // Uruchom kamerę, gdy strona staje się widoczna
+            fetch('http://localhost:5000/start_camera')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.status);
+                    camera_start();
+                })
+
+                .catch(error => console.error('Error starting camera:', error));
+        }
     }
 });
