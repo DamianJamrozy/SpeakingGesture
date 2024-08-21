@@ -111,3 +111,115 @@ Contact: email damianjamrozy99@gmail.com or https://www.linkedin.com/in/djamrozy
 
 **Server:** Python, PHP
 
+
+![Logo](https://github.com/DamianJamrozy/SpeakingGesture/blob/master/img/others/Readme0.jpg)
+
+
+Polish
+# Speaking Gesture
+
+Aplikacja Speaking Gesture została stworzona przez jedną osobę w ramach pracy magisterskiej w 2024 roku. Aplikacja porusza problematykę niepełnosprawności w powiązaniu z Polskim Językiem Migowym. Aplikacja dzięki sieciom neuronowym rozpoznaje gesty prezentowane przez użytkownika i tłumaczy je na język polski, a także umożliwia wyszukiwanie wizualizacji danego słowa w języku migowym. Dostępny jest także prosty moduł dotyczący nauki języka migowego.
+
+Autor: [inż. Damian Jamroży](https://github.com/DamianJamrozy)
+
+Data publikacji: sierpień 2024
+
+Wszelkie prawa zastrzeżone
+## Dokumentacja
+
+[Dokumentacja](https://github.com/DamianJamrozy/SpeakingGesture/blob/master/PDF/djamrozy-praca-mgr.pdf)
+
+
+## Ostatnie aktualizacje
+
+Zaktualizuj wersję 0.48
+- 6 nowych gestów
+- Podglądy na żywo
+- Podgląd gestów
+- Platforma internetowa
+
+
+## 🚀 O mnie
+Cześć, nazywam się inż. Damiana Jamrożego. Jestem informatykiem, absolwentem Uniwersytetu Rzeszowskiego. Zarówno w pracy zawodowej, jak i akademickiej staram się poszukiwać rozwiązań automatyzujących procesy biznesowe. Obecnie interesuję się zarządzaniem projektami i rozwojem sztucznej inteligencji.
+
+
+## 🔗 Linki
+[![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DamianJamrozy)
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/djamrozy/ )
+
+[![facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/damian.jamrozy. xD)
+
+[![instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/skrrr_dj/)
+
+
+## Instalacja
+
+Aby skorzystać z mojego projektu, musisz zainstalować Pythona 3.9 i zależności za pomocą pip
+
+,,bicie
+pip zainstaluj kolbę
+pip zainstaluj flask-cors
+pip zainstaluj opencv-python
+pip zainstaluj numpy
+pip zainstaluj mediapipe
+pip zainstaluj tensorflow
+pip zainstaluj Keras
+pip zainstaluj poduszkę
+pip zainstaluj scikit-learn
+
+```
+
+Potrzebujesz także lokalnego serwera, takiego jak XAMPP:
+https://www.apachefriends.org
+
+## Uruchom lokalnie
+
+Sklonuj projekt do lokalizacji na lokalnym serwerze (przykład: C:\xampp\htdocs\websites\SignLanguageApp)
+
+,,bicie
+ git klon https://github.com/DamianJamrozy/SpeakingGesture
+```
+
+Przejdź do katalogu projektu i uruchom jako administrator plik app.py
+
+,,bicie
+ C:\xampp\htdocs\websites\SignLanguageApp\app.py
+```
+
+Uruchom XAMPP i uruchom usługę:
+
+,,bicie
+ Apacz
+ MySQL'a
+```
+
+
+Przejdź do przeglądarki internetowej i otwórz link (plik Index.php)
+
+,,bicie
+ localhost/websites/SignLanguageApp/templates/Index.php
+```
+
+
+
+## Ważny
+
+Nie zezwalam na modyfikację i wykorzystywanie kodu w jakimkolwiek celu bez zgody autora. Cały program został stworzony wyłącznie w polskiej wersji językowej.
+
+
+## Zrzuty ekranu
+
+![Zrzut ekranu aplikacji](https://github.com/DamianJamrozy/SpeakingGesture/blob/master/img/others/Readme1.jpg)
+
+
+## Informacje zwrotne i wsparcie
+
+Kontakt: e-mail damianjamrozy99@gmail.com lub https://www.linkedin.com/in/djamrozy/.
+
+
+## Stos technologii
+
+**Klient:** HTML, CSS, JavaScript
+
+**Serwer:** Python, PHP
