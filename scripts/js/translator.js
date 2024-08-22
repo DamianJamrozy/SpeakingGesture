@@ -273,6 +273,7 @@ let lastGesture = null;
 let gestureCount = 0;
 let isVisualizing = false;
 let visualizationButton = null;
+let stopGestures = false; // Flaga do przerwania cyklicznego wywoływania
 
 async function checkGestures() {
     if (stopGestures) {
