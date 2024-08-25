@@ -368,7 +368,7 @@ def create_training_progress_bar(total):
     button_frame = tk.Frame(root)
     button_frame.pack(pady=10)
 
-    finish_label = tk.Label(root, text="Proces uczenia maszynowego zakończony")
+    finish_label = tk.Label(root, text="Proces uczenia maszynowego został zakończony")
     finish_label.pack()
     finish_label.pack_forget()
 
