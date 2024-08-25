@@ -84,7 +84,7 @@ def record_gesture_video(gesture_name, num_videos, video_length_seconds):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    gesture_name = 'Brak ruchu'
+    gesture_name = 'Test'
     num_videos = 100
     video_length_seconds = 4
 

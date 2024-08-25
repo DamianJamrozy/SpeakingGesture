@@ -295,11 +295,14 @@ async function checkGestures() {
 
             if (gestureCount === 3) {
                 console.log(`Gesture detected 3 times: ${detectedGesture}`);
-                if (!isVisualizing) {
-                    createVisualizationButton(detectedGesture);
-                } else {
-                    updateVisualization(detectedGesture);
+                if (`${detectedGesture}` != "Brak ruchu") {
+                    if (!isVisualizing) {
+                        createVisualizationButton(detectedGesture);
+                    } else {
+                        updateVisualization(detectedGesture);
+                    }
                 }
+                
             }
         }
     } catch (error) {
