@@ -1,12 +1,12 @@
 import os
 
 # Ścieżka do folderu, w którym znajdują się pliki
-folder_path = "Cześć 2"
+folder_path = "MP_Data/Prosić"
 
 # Przechodzimy przez wszystkie pliki w folderze
 for i in range(100):
     old_name = f"{i}.avi"
-    new_name = f"{i + 100}.avi"
+    new_name = f"{i + 200}.avi"
 
     # Pełne ścieżki do plików
     old_file_path = os.path.join(folder_path, old_name)

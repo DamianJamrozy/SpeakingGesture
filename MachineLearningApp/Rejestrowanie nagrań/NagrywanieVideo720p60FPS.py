@@ -35,14 +35,18 @@ def put_text_with_polish_characters(image, text, position, font_path='arial.ttf'
     return image
 
 
-def countdown_timer(cap, seconds, message):
+def countdown_timer(cap, seconds, message, gesture_number=None):
     start_time = time.time()
     while time.time() - start_time < seconds:
         ret, frame = cap.read()
         if not ret:
             break
-        frame = put_text_with_polish_characters(frame, f"{message} {int(seconds - (time.time() - start_time))}",
-                                                (50, 50))
+        if gesture_number is not None:
+            frame = put_text_with_polish_characters(frame, f"{message} Gest {gesture_number}",
+                                                    (50, 50))
+        else:
+            frame = put_text_with_polish_characters(frame, f"{message} {int(seconds - (time.time() - start_time))}",
+                                                    (50, 50))
         cv2.imshow('Recording', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -65,10 +69,10 @@ def record_gesture_video(gesture_name, num_videos, video_length_seconds, cap, ac
     for sequence in range(sequence_start, sequence_start + num_videos):
         if sequence == sequence_start:
             message = "Przyjmij pierwszą pozycję wyjściową."
-            countdown_timer(cap, 15, message)
+            countdown_timer(cap, 15, message, gesture_number=None)
         if sequence % 25 == 0 and sequence != sequence_start:
             message = "Przygotuj się do kolejnego gestu."
-            countdown_timer(cap, 1, message)
+            countdown_timer(cap, 1, message, gesture_number=sequence + 1 - sequence_start)
 
         out = cv2.VideoWriter()
         video_filename = os.path.join(gesture_path, f"{sequence}.avi")
@@ -104,16 +108,20 @@ def record_gesture_video(gesture_name, num_videos, video_length_seconds, cap, ac
 
         out.release()
 
-        # 1-sekundowa przerwa z komunikatem
-        message = "Przygotuj się na kolejny gest..."
-        countdown_timer(cap, 1, message)
+        # 2-sekundowa przerwa z komunikatem
+        if(sequence + 2 - sequence_start == 101):
+            message = f"Zakończono nagrywanie"
+            countdown_timer(cap, 2, message)
+        else:
+            message = f"Przygotuj się na kolejny gest..."
+            countdown_timer(cap, 2, message, gesture_number=sequence + 2 - sequence_start)
 
     cap.release()
     cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
-    gesture_name = 'Dzięki'
+    gesture_name = 'Prosić'
     num_videos = 100
     video_length_seconds = 4
 
