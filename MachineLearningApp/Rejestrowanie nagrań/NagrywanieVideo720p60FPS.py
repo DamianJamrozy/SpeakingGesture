@@ -121,7 +121,7 @@ def record_gesture_video(gesture_name, num_videos, video_length_seconds, cap, ac
 
 
 if __name__ == "__main__":
-    gesture_name = 'Prosić'
+    gesture_name = 'Przepraszać'
     num_videos = 100
     video_length_seconds = 4
 

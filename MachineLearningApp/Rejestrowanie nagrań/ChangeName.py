@@ -1,7 +1,7 @@
 import os
 
 # Ścieżka do folderu, w którym znajdują się pliki
-folder_path = "MP_Data/Prosić"
+folder_path = "MP_Data/Przepraszać"
 
 # Przechodzimy przez wszystkie pliki w folderze
 for i in range(100):
