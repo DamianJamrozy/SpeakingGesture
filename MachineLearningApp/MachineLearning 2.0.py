@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox
 import threading
 import tensorflow as tf
 from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout, Conv1D, MaxPooling1D, Flatten
+from keras.layers import LSTM, Dense, Dropout, Conv1D, MaxPooling1D, Flatten, TimeDistributed, Bidirectional
 from keras.utils import to_categorical
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from sklearn.model_selection import train_test_split
@@ -121,7 +121,7 @@ def preprocess_videos_with_progress(data_path):
 
     def display_visualization():
         vis_root = tk.Toplevel()
-        vis_root.title("Speaking Gesture - Wizualizacja przetwarzania")
+        vis_root.title("Speaking Gesture 2.0 - Wizualizacja przetwarzania")
         vis_root.geometry("800x400")
         vis_root.attributes('-topmost', True)
         vis_root.resizable(False, False)
@@ -288,7 +288,7 @@ def center_window(root, width, height):
 
 def create_progress_bar(total, footer_text, display_visualization):
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.0")
     width, height = 600, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -341,7 +341,7 @@ def create_progress_bar(total, footer_text, display_visualization):
 
 def create_training_progress_bar(total):
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.0")
     width, height = 600, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -410,11 +410,13 @@ def train_model(data, labels):
     y_test = to_categorical(y_test)
 
     model = Sequential()
-    model.add(Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(num_timesteps, num_features)))
-    model.add(MaxPooling1D(pool_size=2))
-    model.add(Conv1D(filters=128, kernel_size=3, activation='relu'))
-    model.add(MaxPooling1D(pool_size=2))
-    model.add(Flatten())
+    model.add(TimeDistributed(Conv1D(filters=64, kernel_size=3, activation='relu'), input_shape=(num_timesteps, num_features, 1)))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
+    model.add(TimeDistributed(Conv1D(filters=128, kernel_size=3, activation='relu')))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
+    model.add(TimeDistributed(Flatten()))
+    model.add(Bidirectional(LSTM(256, return_sequences=False)))
+    model.add(Dropout(0.5))
     model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(len(np.unique(labels)), activation='softmax'))
@@ -458,7 +460,7 @@ def start_training(data, labels, existing_root):
 
 def show_initial_window():
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.0")
     width, height = 600, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -539,7 +541,7 @@ def show_initial_window():
 
 def show_preprocessed_data_window():
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.0")
     width, height = 600, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)

@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox
 import threading
 import tensorflow as tf
 from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout, Conv1D, MaxPooling1D, Flatten
+from keras.layers import LSTM, Dense, Dropout, Conv1D, MaxPooling1D, Flatten, TimeDistributed, Bidirectional
 from keras.utils import to_categorical
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from sklearn.model_selection import train_test_split
@@ -29,6 +29,11 @@ mp_face_mesh = mp.solutions.face_mesh
 # Ignorowanie ostrzeżeń dotyczących SymbolDatabase.GetPrototype()
 warnings.filterwarnings("ignore", category=UserWarning,
                         message="SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead.")
+
+# Ustawienia TensorFlow dla lepszego wykorzystania CPU
+tf.config.threading.set_intra_op_parallelism_threads(64)  # Liczba wątków dla operacji wewnętrznych
+tf.config.threading.set_inter_op_parallelism_threads(64)  # Liczba wątków dla operacji równoległych
+tf.config.set_soft_device_placement(True)
 
 
 def extract_keypoints(pose_results, hands_results, face_results):
@@ -121,7 +126,7 @@ def preprocess_videos_with_progress(data_path):
 
     def display_visualization():
         vis_root = tk.Toplevel()
-        vis_root.title("Speaking Gesture - Wizualizacja przetwarzania")
+        vis_root.title("Speaking Gesture 2.1")
         vis_root.geometry("800x400")
         vis_root.attributes('-topmost', True)
         vis_root.resizable(False, False)
@@ -288,7 +293,7 @@ def center_window(root, width, height):
 
 def create_progress_bar(total, footer_text, display_visualization):
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.1")
     width, height = 600, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -341,7 +346,7 @@ def create_progress_bar(total, footer_text, display_visualization):
 
 def create_training_progress_bar(total):
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.1")
     width, height = 600, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -394,8 +399,18 @@ def create_training_progress_bar(total):
     return root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button
 
 
+def prepare_data_for_training(data, labels, batch_size=32, shuffle=True):
+    dataset = tf.data.Dataset.from_tensor_slices((data, labels))
+    if shuffle:
+        dataset = dataset.shuffle(buffer_size=len(labels))
+    dataset = dataset.batch(batch_size)
+    dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    return dataset
+
+
 def train_model(data, labels):
     total_epochs = 150
+    batch_size = 32  # Batch size zmniejszony dla oszczędności pamięci
 
     label_encoder = LabelEncoder()
     labels = label_encoder.fit_transform(labels)
@@ -409,12 +424,17 @@ def train_model(data, labels):
     y_train = to_categorical(y_train)
     y_test = to_categorical(y_test)
 
+    train_dataset = prepare_data_for_training(X_train, y_train, batch_size=batch_size)
+    test_dataset = prepare_data_for_training(X_test, y_test, batch_size=batch_size, shuffle=False)
+
     model = Sequential()
-    model.add(Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(num_timesteps, num_features)))
-    model.add(MaxPooling1D(pool_size=2))
-    model.add(Conv1D(filters=128, kernel_size=3, activation='relu'))
-    model.add(MaxPooling1D(pool_size=2))
-    model.add(Flatten())
+    model.add(TimeDistributed(Conv1D(filters=64, kernel_size=3, activation='relu'), input_shape=(num_timesteps, num_features, 1)))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
+    model.add(TimeDistributed(Conv1D(filters=128, kernel_size=3, activation='relu')))
+    model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
+    model.add(TimeDistributed(Flatten()))
+    model.add(Bidirectional(LSTM(256, return_sequences=False)))
+    model.add(Dropout(0.5))
     model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(len(np.unique(labels)), activation='softmax'))
@@ -440,8 +460,11 @@ def train_model(data, labels):
         root.update_idletasks()
 
     def train_model_thread():
-        model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=total_epochs, batch_size=32,
-                  callbacks=[checkpoint, early_stopping, tf.keras.callbacks.LambdaCallback(on_epoch_end=on_epoch_end)])
+        model.fit(train_dataset, validation_data=test_dataset, epochs=total_epochs,
+                  callbacks=[checkpoint, early_stopping, tf.keras.callbacks.LambdaCallback(on_epoch_end=on_epoch_end)],
+                  workers=64,  # Wykorzystanie większej liczby wątków
+                  use_multiprocessing=True)  # Włączona wieloprocesowość
+
         finish_label.pack()
         close_button.pack(pady=5)
         root.update_idletasks()
@@ -458,7 +481,7 @@ def start_training(data, labels, existing_root):
 
 def show_initial_window():
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.1")
     width, height = 600, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
@@ -539,7 +562,7 @@ def show_initial_window():
 
 def show_preprocessed_data_window():
     root = tk.Tk()
-    root.title("Speaking Gesture")
+    root.title("Speaking Gesture 2.1")
     width, height = 600, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
