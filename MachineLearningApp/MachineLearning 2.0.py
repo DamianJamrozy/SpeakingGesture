@@ -62,6 +62,17 @@ def pad_sequences(sequences, maxlen, num_features):
     return padded_sequences
 
 
+def format_time(seconds):
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    if h > 0:
+        return f"{h} godz. {m} min {s} sek"
+    elif m > 0:
+        return f"{m} min {s} sek"
+    else:
+        return f"{s} sek"
+
+
 def process_video(args):
     video_path, gesture, data, labels, current_progress, total_videos, lock, queue = args
     cap = cv2.VideoCapture(video_path)
@@ -122,7 +133,7 @@ def preprocess_videos_with_progress(data_path):
     def display_visualization():
         vis_root = tk.Toplevel()
         vis_root.title("Speaking Gesture 2.0 - Wizualizacja przetwarzania")
-        vis_root.geometry("800x400")
+        vis_root.geometry("1000x400")
         vis_root.attributes('-topmost', True)
         vis_root.resizable(False, False)
 
@@ -183,13 +194,13 @@ def preprocess_videos_with_progress(data_path):
                             mp_drawing.draw_landmarks(frame_right, face_landmarks, mp_face_mesh.FACEMESH_TESSELATION)
 
                     img_left = cv2.cvtColor(frame_left, cv2.COLOR_BGR2RGB)
-                    img_left = cv2.resize(img_left, (400, 300))
+                    img_left = cv2.resize(img_left, (500, 300))
                     img_left = ImageTk.PhotoImage(image=Image.fromarray(img_left))
                     vis_label_left.config(image=img_left)
                     vis_label_left.image = img_left
 
                     img_right = cv2.cvtColor(frame_right, cv2.COLOR_BGR2RGB)
-                    img_right = cv2.resize(img_right, (400, 300))
+                    img_right = cv2.resize(img_right, (500, 300))
                     img_right = ImageTk.PhotoImage(image=Image.fromarray(img_right))
                     vis_label_right.config(image=img_right)
                     vis_label_right.image = img_right
@@ -200,13 +211,10 @@ def preprocess_videos_with_progress(data_path):
 
         threading.Thread(target=update_visualization).start()
 
-    root, main_progress, progress_text, details_text, button_frame, footer_label = create_progress_bar(total_videos,
-                                                                                                       "Autor: Damian Jamroży",
-                                                                                                       display_visualization)
+    start_time = time.time()
 
-    # Add the finish label at the appropriate place
-    finish_label = tk.Label(root, text="", fg="green")
-    finish_label.pack(pady=10)
+    root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label = create_progress_bar(
+        total_videos, "Autor: Damian Jamroży", display_visualization, start_time)
 
     def update_progress():
         while True:
@@ -238,7 +246,6 @@ def preprocess_videos_with_progress(data_path):
             num_features = max(len(frame) for seq in data for frame in seq)
             data_array = pad_sequences(list(data), maxlen=240, num_features=num_features)
 
-            # Insert message before saving file
             details_text.config(state='normal')
             details_text.insert('end', "Trwa zapisywanie pliku pomocniczego preprocessed_data.npz...\n")
             details_text.yview('end')
@@ -247,7 +254,6 @@ def preprocess_videos_with_progress(data_path):
             save_preprocessed_data(data_array, np.array(labels))
             print(f"Przetworzono {len(data)} nagrań.")
 
-            # Insert final message after saving file
             location = os.path.abspath('preprocessed_data.npz')
             final_message = f"Program zakończył swoje działanie pomyślnie. Przetworzono {len(data)} nagrań, a plik pomocniczy został zapisany w lokalizacji {location}"
             details_text.config(state='normal')
@@ -258,8 +264,9 @@ def preprocess_videos_with_progress(data_path):
         else:
             print("Brak przetworzonych nagrań.")
 
-        # Update the finish label text here
-        finish_label.config(text="Zakończono przetwarzanie danych")
+        end_time = time.time()
+        duration = format_time(int(end_time - start_time))
+        finish_label.config(text=f"Zakończono przetwarzanie danych\nCzas trwania programu: {duration}")
 
         start_training_button = tk.Button(button_frame, text="Rozpocznij uczenie maszynowe",
                                           command=lambda: start_training(data_array, np.array(labels), root))
@@ -286,22 +293,22 @@ def center_window(root, width, height):
     root.geometry(f'{width}x{height}+{x}+{y}')
 
 
-def create_progress_bar(total, footer_text, display_visualization):
+def create_progress_bar(total, footer_text, display_visualization, start_time):
     root = tk.Tk()
     root.title("Speaking Gesture 2.0")
-    width, height = 600, 200
+    width, height = 1000, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
     root.resizable(False, False)
 
-    main_progress = ttk.Progressbar(root, orient="horizontal", length=500, mode="determinate", maximum=total)
+    main_progress = ttk.Progressbar(root, orient="horizontal", length=950, mode="determinate", maximum=total)
     main_progress.pack(pady=20)
 
     details_frame = tk.Frame(root)
     details_frame.pack(fill='both', expand=True)
     details_frame.pack_forget()
 
-    details_text = tk.Text(details_frame, wrap='word', height=10, state='disabled')
+    details_text = tk.Text(details_frame, wrap='none', height=10, state='disabled')
     details_text.pack(fill='both', expand=True)
 
     details_button = tk.Button(root, text="Pokaż szczegóły",
@@ -317,6 +324,9 @@ def create_progress_bar(total, footer_text, display_visualization):
 
     button_frame = tk.Frame(root)
     button_frame.pack(pady=10)
+
+    finish_label = tk.Label(root, text="")
+    finish_label.pack(pady=10)
 
     footer_label = tk.Label(root, text=footer_text)
     footer_label.pack(side=tk.BOTTOM, pady=5)
@@ -336,25 +346,25 @@ def create_progress_bar(total, footer_text, display_visualization):
             root.geometry(f'{width}x{450}')
             button.config(text="Ukryj szczegóły")
 
-    return root, main_progress, progress_text, details_text, button_frame, footer_label
+    return root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label
 
 
 def create_training_progress_bar(total):
     root = tk.Tk()
     root.title("Speaking Gesture 2.0")
-    width, height = 600, 300
+    width, height = 1000, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
     root.resizable(False, False)
 
-    main_progress = ttk.Progressbar(root, orient="horizontal", length=500, mode="determinate", maximum=total)
+    main_progress = ttk.Progressbar(root, orient="horizontal", length=950, mode="determinate", maximum=total)
     main_progress.pack(pady=20)
 
     details_frame = tk.Frame(root)
     details_frame.pack(fill='both', expand=True)
     details_frame.pack_forget()
 
-    details_text = tk.Text(details_frame, wrap='word', height=10, state='disabled')
+    details_text = tk.Text(details_frame, wrap='none', height=10, state='disabled')
     details_text.pack(fill='both', expand=True)
 
     details_button = tk.Button(root, text="Pokaż szczegóły",
@@ -371,6 +381,10 @@ def create_training_progress_bar(total):
     finish_label = tk.Label(root, text="Proces uczenia maszynowego został zakończony")
     finish_label.pack()
     finish_label.pack_forget()
+
+    duration_label = tk.Label(root, text="")
+    duration_label.pack()
+    duration_label.pack_forget()
 
     close_button = tk.Button(root, text="Zakończ", command=root.quit)
     close_button.pack()
@@ -391,7 +405,7 @@ def create_training_progress_bar(total):
             root.geometry(f'{width}x{550}')
             button.config(text="Ukryj szczegóły")
 
-    return root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button
+    return root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button, duration_label
 
 
 def train_model(data, labels):
@@ -410,7 +424,8 @@ def train_model(data, labels):
     y_test = to_categorical(y_test)
 
     model = Sequential()
-    model.add(TimeDistributed(Conv1D(filters=64, kernel_size=3, activation='relu'), input_shape=(num_timesteps, num_features, 1)))
+    model.add(TimeDistributed(Conv1D(filters=64, kernel_size=3, activation='relu'),
+                              input_shape=(num_timesteps, num_features, 1)))
     model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
     model.add(TimeDistributed(Conv1D(filters=128, kernel_size=3, activation='relu')))
     model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
@@ -426,7 +441,9 @@ def train_model(data, labels):
     checkpoint = ModelCheckpoint('best_model.h5', monitor='val_accuracy', save_best_only=True, mode='max')
     early_stopping = EarlyStopping(monitor='val_accuracy', patience=20, restore_best_weights=True)
 
-    root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button = create_training_progress_bar(
+    start_time = time.time()
+
+    root, main_progress, progress_text, details_text, button_frame, footer_label, finish_label, close_button, duration_label = create_training_progress_bar(
         total_epochs)
 
     root.update_idletasks()
@@ -444,7 +461,13 @@ def train_model(data, labels):
     def train_model_thread():
         model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=total_epochs, batch_size=32,
                   callbacks=[checkpoint, early_stopping, tf.keras.callbacks.LambdaCallback(on_epoch_end=on_epoch_end)])
+
+        end_time = time.time()
+        duration = format_time(int(end_time - start_time))
+
         finish_label.pack()
+        duration_label.config(text=f"Czas trwania uczenia: {duration}")
+        duration_label.pack()
         close_button.pack(pady=5)
         root.update_idletasks()
 
@@ -461,7 +484,7 @@ def start_training(data, labels, existing_root):
 def show_initial_window():
     root = tk.Tk()
     root.title("Speaking Gesture 2.0")
-    width, height = 600, 300
+    width, height = 800, 300
     center_window(root, width, height)
     root.attributes('-topmost', True)
     root.resizable(False, False)
@@ -477,21 +500,21 @@ def show_initial_window():
 
     instructions_text = "Wybierz katalog z danymi do przetworzenia. Struktura powinna być następująca: {Wybrany katalog}/{Nazwa sekwencji ruchu}/{pliki.avi}"
 
-    label_welcome = tk.Label(root, text=welcome_text, wraplength=550, justify="left")
+    label_welcome = tk.Label(root, text=welcome_text, wraplength=750, justify="left")
     label_welcome.pack(pady=10)
     welcome_link.pack()
 
-    label_instructions = tk.Label(root, text=instructions_text, wraplength=550, justify="left")
+    label_instructions = tk.Label(root, text=instructions_text, wraplength=750, justify="left")
     label_instructions.pack(pady=10)
 
     frame_path = tk.Frame(root)
     frame_path.pack(pady=10)
 
-    path_label = tk.Label(frame_path, text="Ścieżka: ", wraplength=500, justify="left")
+    path_label = tk.Label(frame_path, text="Ścieżka: ", wraplength=750, justify="left")
     path_label.pack(side="left")
 
     path_var = tk.StringVar()
-    path_entry = tk.Entry(frame_path, textvariable=path_var, width=50)
+    path_entry = tk.Entry(frame_path, textvariable=path_var, width=60)
     path_entry.pack(side="left", padx=10)
 
     def choose_directory():
@@ -503,7 +526,7 @@ def show_initial_window():
     choose_button = tk.Button(frame_path, text="Wybierz katalog", command=choose_directory)
     choose_button.pack(side="left")
 
-    validation_label = tk.Label(root, text="", wraplength=550)
+    validation_label = tk.Label(root, text="", wraplength=750)
     validation_label.pack(pady=10)
 
     def check_directory_structure(path):
@@ -542,7 +565,7 @@ def show_initial_window():
 def show_preprocessed_data_window():
     root = tk.Tk()
     root.title("Speaking Gesture 2.0")
-    width, height = 600, 200
+    width, height = 800, 200
     center_window(root, width, height)
     root.attributes('-topmost', True)
     root.resizable(False, False)
@@ -558,11 +581,11 @@ def show_preprocessed_data_window():
 
     detection_text = "Program wykrył przetworzone dane. Czy chcesz rozpocząć uczenie maszynowe na obecnych danych?"
 
-    label_welcome = tk.Label(root, text=welcome_text, wraplength=550, justify="left")
+    label_welcome = tk.Label(root, text=welcome_text, wraplength=750, justify="left")
     label_welcome.pack(pady=10)
     welcome_link.pack()
 
-    label_detection = tk.Label(root, text=detection_text, wraplength=550, justify="left")
+    label_detection = tk.Label(root, text=detection_text, wraplength=750, justify="left")
     label_detection.pack(pady=10)
 
     button_frame = tk.Frame(root)
