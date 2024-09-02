@@ -12,9 +12,9 @@ import threading
 app = Flask(__name__)
 CORS(app)
 
-model = load_model('scripts/python/best_model.h5')
+model = load_model('scripts/python/1.0/best_model.h5')
 label_encoder = LabelEncoder()
-label_encoder.classes_ = np.load('scripts/python/classes.npy')
+label_encoder.classes_ = np.load('scripts/python/1.0/classes.npy')
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
