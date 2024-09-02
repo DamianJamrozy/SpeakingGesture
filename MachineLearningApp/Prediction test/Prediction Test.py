@@ -10,9 +10,9 @@ from tkinter import Tk, filedialog, Toplevel, Button, Label, IntVar
 from tkinter.ttk import Progressbar
 
 # Wczytaj model i etykiety z nowych lokalizacji
-model = load_model('../../scripts/python/best_model.h5')
+model = load_model('../../scripts/python/1.0/best_model.h5')
 label_encoder = LabelEncoder()
-label_encoder.classes_ = np.load('../../scripts/python/classes.npy')
+label_encoder.classes_ = np.load('../../scripts/python/1.0/classes.npy')
 
 # Ustawienia Mediapipe
 mp_drawing = mp.solutions.drawing_utils
