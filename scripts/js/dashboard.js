@@ -1,6 +1,6 @@
 //Obs³uga podstawowa danych
 let ilosc_gestow = 6;
-let ilosc_nagran = 1100;
+let ilosc_nagran = 1800;
 let czas_nagran = 0;
 
 document.getElementById("ilosc_gestow").innerHTML = ilosc_gestow;

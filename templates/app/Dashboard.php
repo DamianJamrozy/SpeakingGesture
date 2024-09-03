@@ -99,30 +99,30 @@
                                 <span href="#">Największa ilość próbek</span>
                             </div>
                             <div class="acquisitions-bar">
-                                <span class="bar-progress rejected" style="width:200%;"></span>
-                                <span class="bar-progress on-hold" style="width:200%;"></span>
-                                <span class="bar-progress shortlisted" style="width:200%;"></span>
-                                <span class="bar-progress applications" style="width:100%;"></span>
+                                <span class="bar-progress rejected" style="width:300%;"></span>
+                                <span class="bar-progress on-hold" style="width:300%;"></span>
+                                <span class="bar-progress shortlisted" style="width:300%;"></span>
+                                <span class="bar-progress applications" style="width:300%;"></span>
                             </div>
                             <div class="progress-bar-info">
                                 <span class="progress-color applications"></span>
                                 <span class="progress-type">Dzięki</span>
-                                <span class="progress-amount">200</span>
+                                <span class="progress-amount">300</span>
                             </div>
                             <div class="progress-bar-info">
                                 <span class="progress-color shortlisted"></span>
                                 <span class="progress-type">Dziękuję</span>
-                                <span class="progress-amount">200</span>
+                                <span class="progress-amount">300</span>
                             </div>
                             <div class="progress-bar-info">
                                 <span class="progress-color on-hold"></span>
                                 <span class="progress-type">Prosić</span>
-                                <span class="progress-amount">200</span>
+                                <span class="progress-amount">300</span>
                             </div>
                             <div class="progress-bar-info">
                                 <span class="progress-color rejected"></span>
                                 <span class="progress-type">Cześć</span>
-                                <span class="progress-amount">100</span>
+                                <span class="progress-amount">300</span>
                             </div>
                         </div>
                         <div class="chart-container applicants">
