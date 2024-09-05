@@ -1,1 +1,5 @@
 Program wykorzystuje wieloprocesowość. Przed uruchomieniem programu upewnij się że Twoja maszyna spełnia wymagania techniczne.
+
+
+
+*Wszystkie materiały zawarte w części teoretycznej oraz praktycznej niniejszej dysertacji stanowią własność Damiana Jamrożego. Wszelkie prawa zastrzeżone. W celu uzyskania zgody na wykorzystanie całości lub fragmentów pracy, proszę o bezpośredni kontakt z autorem. Dopuszcza się udostępnianie wersji teoretycznej pracy (plik djamrozy-praca-mgr.pdf) wyłącznie z zachowaniem pełni praw autorskich poprzez zastosowanie cytowania.
