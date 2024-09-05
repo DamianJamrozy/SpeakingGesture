@@ -78,7 +78,6 @@ Run XAMPP and start service:
 
 ```bash
   Apache
-  MySQL
 ```
 
 
@@ -193,7 +192,6 @@ Uruchom XAMPP i uruchom usługę:
 
 ```bash
  Apache
- MySQL
 ```
 
 
