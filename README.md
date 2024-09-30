@@ -19,7 +19,7 @@ All rights reserved
 
 ## Last updates
 
-Update v0.48
+Update v1.0
 - 6 new gestures
 - Live previews
 - Preview of gestures
@@ -133,7 +133,7 @@ Wszelkie prawa zastrzeżone
 
 ## Ostatnie aktualizacje
 
-Aktualizacja v0.48
+Aktualizacja v1.0
 - 6 nowych gestów
 - Podgląd kamery na żywo
 - Podgląd przetworzonych gestów
