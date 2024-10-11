@@ -27,7 +27,7 @@ Update v1.0
 
 
 ## 🚀 About Me
-Hi, my name is Eng. Damian Jamroży. I am a computer scientist, a graduate of the University of Rzeszow. Both in my professional and academic work I try to look for solutions to automate business processes. Currently, I am interested in project management and the development of artificial intelligence.
+Hi, my name is MSc. Damian Jamroży. I am a computer scientist, a graduate of the University of Rzeszow. Both in my professional and academic work I try to look for solutions to automate business processes. Currently, I am interested in project management and the development of artificial intelligence.
 
 
 ## 🔗 Links
@@ -121,7 +121,7 @@ Polish
 
 Aplikacja Speaking Gesture została stworzona przez jedną osobę w ramach pracy magisterskiej w 2024 roku. Aplikacja porusza problematykę niepełnosprawności w odniesieniu do Polskiego Języka Migowego. Aplikacja dzięki sieciom neuronowym rozpoznaje gesty prezentowane przez użytkownika i tłumaczy je na język polski, a także umożliwia wyszukiwanie wizualizacji danego słowa w języku migowym. Dostępny jest także prosty moduł dotyczący nauki języka migowego.
 
-Autor: [inż. Damian Jamroży](https://github.com/DamianJamrozy)
+Autor: [Mgr inż. Damian Jamroży](https://github.com/DamianJamrozy)
 
 Data publikacji: sierpień 2024
 
