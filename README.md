@@ -7,7 +7,7 @@ English
 
 The Speaking Gesture application was created by one person as part of his master's thesis in 2024. The app addresses disability issues in relation to Polish Sign Language. The application, thanks to neural networks, recognizes gestures presented by the user and translates them into Polish, as well as allows to search for visualizations of a given word in sign language. A simple module on learning sign language is also available.
 
-Autor: [Eng. Damian Jamroży](https://github.com/DamianJamrozy)
+Autor: [Msc. Damian Jamroży](https://github.com/DamianJamrozy)
 
 Date of publication: August 2024
 
